@@ -1,0 +1,61 @@
+{
+  "attribution": "This content includes LOINC codes from the LOINC table, the LOINC panels and forms file, LOINC answer file, and/or the LOINC Part file, as applicable. This content is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at https://loinc.org/license/. LOINC® is a registered United States trademark of Regenstrief Institute, Inc.",
+  "license": "Regenstrief LOINC License — free distribution with attribution notice",
+  "source": "Regenstrief Institute, https://loinc.org",
+  "codes": [
+    {
+      "loinc": "2160-0",
+      "component": "Creatinine",
+      "system": "Ser/Plas",
+      "scale": "Qn",
+      "unit": "umol/L",
+      "default_value": 85.0,
+      "reference_range": "60–110"
+    },
+    {
+      "loinc": "718-7",
+      "component": "Hemoglobin",
+      "system": "Bld",
+      "scale": "Qn",
+      "unit": "g/dL",
+      "default_value": 13.5,
+      "reference_range": "12.0–17.5"
+    },
+    {
+      "loinc": "2345-7",
+      "component": "Glucose",
+      "system": "Ser/Plas",
+      "scale": "Qn",
+      "unit": "mmol/L",
+      "default_value": 5.4,
+      "reference_range": "3.9–7.8"
+    },
+    {
+      "loinc": "98980-6",
+      "component": "GFR/1.73 sq M.predicted",
+      "system": "Ser/Plas",
+      "scale": "Qn",
+      "unit": "mL/min/1.73m2",
+      "default_value": 72.0,
+      "reference_range": ">60"
+    },
+    {
+      "loinc": "2093-3",
+      "component": "Cholesterol",
+      "system": "Ser/Plas",
+      "scale": "Qn",
+      "unit": "mmol/L",
+      "default_value": 4.8,
+      "reference_range": "<5.0"
+    },
+    {
+      "loinc": "6301-6",
+      "component": "INR in Platelet poor plasma by Coagulation assay",
+      "system": "PPP",
+      "scale": "Qn",
+      "unit": "INR",
+      "default_value": 1.1,
+      "reference_range": "0.8–1.2"
+    }
+  ]
+}

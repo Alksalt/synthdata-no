@@ -16,6 +16,7 @@ dependencies = [
     "numpy>=1.26",
     "faker>=25.0",
     "requests>=2.32",
+    "defusedxml>=0.7.1",
 ]
 
 [dependency-groups]
