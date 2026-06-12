@@ -12,3 +12,12 @@
   findings were a reviewer-environment artifact — all files git-tracked, wheel verified working in
   an isolated venv). Fixes applied: global `random.seed` removed (isolation hazard), annotation fix,
   `requests` → dev group. 227 tests, CI green. **Owner gates: `uv publish` + PHYSICIAN_REVIEW.md.**
+- **2026-06-12** — **Six-agent review (3 blind) → fix round → domain re-check PASS.** Blind domain
+  + silent-failure BLOCKs fixed same day: per-patient FHIR variety (meds/conditions/kreatinin),
+  kjønnskorrekte navn uten titler, 8 template-reparasjoner, CPT-vakter (sex-key/age-band/planted-
+  count → ValueError), century-grenser per Skatteetaten-spec (1854; 900–999 = kun 1940–1999),
+  Faker låst <26 + «Determinism scope»-note, spacy som `[nlp]`-extra, /Users/-stier skrubbet,
+  `top_n_kommuner=12` (anonymize-demo overlever k=10 utenfor Oslo), CI-badge. Tester 227 → **261**
+  (+ env-gated cross-repo smoke 21/21). Kjent rest (ikke-blokkerende): filler-pool blander
+  symptomer inn i behandlings-slots — se review-md; hører til PHYSICIAN_REVIEW-passet.
+  **PyPI-gate ligger nå kun hos eier.**

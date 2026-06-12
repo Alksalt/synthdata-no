@@ -1,5 +1,15 @@
 # Six-agent independent review — 2026-06-12 (post-v0.1, pre-PyPI)
 
+> **STATUS (same day, post-fix):** N1–N14 ALL FIXED (commits `fix:` series + c42eb81). Domain
+> re-check on fresh seed-11 output: PASS — both personas flip (0/60 name issues, per-patient FHIR
+> variety, all 6 templates repaired, kommune NAMES in city). Century rule correction: review's
+> claim that individ 900–999 covers 2000+ was WRONG — Skatteetaten spec says 1940–1999 only;
+> implemented per spec. Tests 227 → 261 (+1 env-gated cross-repo smoke, 21/21 with
+> OMSORGSRADAR_ROOT set). Known non-blocking residual: single filler pool mixes symptoms into
+> treatment/surgery slots («antibiotika for svimmelhet») — label-correct, realism-only; fix =
+> split fillers.toml into diseases/symptoms + gate treatment frames. Listed for the owner's
+> PHYSICIAN_REVIEW pass. **PyPI gate now rests solely on the owner.**
+
 **Method:** 3 blind (no access to plans/status/DECISIONS; judged code + generated output + the
 public GitHub clone cold) + 3 informed (deep statistics, real consumer-pipeline runs, silent-failure
 hunt). **Verdicts:** blind-correctness PASS · blind-DX PASS · **blind-domain BLOCK** ·
