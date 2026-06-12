@@ -138,3 +138,23 @@ def test_icd10_user_display_file(tmp_path):
     # Code without display file entry has display=None
     assert by_code.get("J18") is not None
     assert by_code["J18"].display is None
+
+
+# ---------------------------------------------------------------------------
+# N13 — load_icd10_codes wraps JSON errors with file path
+# ---------------------------------------------------------------------------
+
+def test_icd10_invalid_json_raises_value_error_with_path(tmp_path):
+    """N13: malformed display_file JSON raises ValueError naming the file."""
+    bad_json = tmp_path / "bad.json"
+    bad_json.write_text("{not valid json}", encoding="utf-8")
+    with pytest.raises(ValueError, match=str(bad_json)):
+        load_icd10_codes(display_file=bad_json)
+
+
+def test_icd10_display_file_wrong_type_raises_value_error(tmp_path):
+    """N13: display_file containing a JSON array (not dict) raises ValueError."""
+    array_json = tmp_path / "array.json"
+    array_json.write_text("[1, 2, 3]", encoding="utf-8")
+    with pytest.raises(ValueError, match="must contain a JSON object"):
+        load_icd10_codes(display_file=array_json)

@@ -42,7 +42,8 @@ class LOINCEntry:
     component: str
     system: str
     scale: str
-    unit: str
+    unit: str          # human-readable display unit
+    ucum: str          # UCUM machine code for valueQuantity.code
     default_value: float
     reference_range: str = ""
 
@@ -106,6 +107,7 @@ def load_loinc_min() -> list[LOINCEntry]:
             system=c["system"],
             scale=c["scale"],
             unit=c["unit"],
+            ucum=c["ucum"],
             default_value=float(c["default_value"]),
             reference_range=c.get("reference_range", ""),
         )
@@ -136,7 +138,24 @@ def load_icd10_codes(
 
     display_map: dict[str, str] = {}
     if display_file is not None:
-        display_map = json.loads(Path(display_file).read_text(encoding="utf-8"))
+        display_path = Path(display_file)
+        try:
+            raw = display_path.read_text(encoding="utf-8")
+        except OSError as exc:
+            raise ValueError(
+                f"Could not read display file {display_path}: {exc}"
+            ) from exc
+        try:
+            display_map = json.loads(raw)
+        except json.JSONDecodeError as exc:
+            raise ValueError(
+                f"display_file {display_path} contains invalid JSON: {exc}"
+            ) from exc
+        if not isinstance(display_map, dict):
+            raise ValueError(
+                f"display_file {display_path} must contain a JSON object (dict), "
+                f"got {type(display_map).__name__}"
+            )
 
     return [
         ICD10Entry(
