@@ -82,9 +82,9 @@ section = "status_presens"
 
 [[templates]]
 id = "pre_neg_uten_noen_01"
-pattern = "Pasienten har uten noen {entity} de siste ukene."
+pattern = "Pasienten har ikke hatt noe {entity} de siste ukene."
 gold_context = "NEGATED_EXISTENCE"
-trigger = "uten noen"
+trigger = "ikke hatt"
 section = "aktuelt"
 
 [[templates]]
@@ -103,9 +103,9 @@ section = "tidligere_sykdommer"
 
 [[templates]]
 id = "pre_neg_aldri_01"
-pattern = "Aldri hatt {entity} ifølge pasient."
+pattern = "Har aldri hatt {entity} ifølge pasient."
 gold_context = "NEGATED_EXISTENCE"
-trigger = "Aldri hatt"
+trigger = "Har aldri hatt"
 section = "anamnese"
 
 [[templates]]
@@ -159,16 +159,16 @@ section = "vurdering"
 
 [[templates]]
 id = "pre_neg_ikke_har_01"
-pattern = "Ikke har pasienten {entity} tidligere."
+pattern = "Pasienten har ikke hatt {entity} tidligere."
 gold_context = "NEGATED_EXISTENCE"
-trigger = "Ikke har"
+trigger = "ikke hatt"
 section = "tidligere_sykdommer"
 
 [[templates]]
 id = "pre_neg_pasienten_ikke_01"
-pattern = "Pasienten ikke rapportert {entity}."
+pattern = "Pasienten har ikke rapportert {entity}."
 gold_context = "NEGATED_EXISTENCE"
-trigger = "Pasienten ikke"
+trigger = "har ikke rapportert"
 section = "aktuelt"
 
 [[templates]]
@@ -331,9 +331,9 @@ section = "anamnese"
 
 [[templates]]
 id = "pseudo_ikke_vet_01"
-pattern = "Ikke vet vi sikkert om {entity} er tilstede."
+pattern = "Vi vet ikke sikkert om {entity} er til stede."
 gold_context = "POSSIBLE_EXISTENCE"
-trigger = "ikke vet"
+trigger = "vet ikke sikkert"
 section = "vurdering"
 
 # ──────────────────────────────────────────────
@@ -1153,7 +1153,7 @@ section = "aktuelt"
 
 [[templates]]
 id = "sec_aktuelt_upper_01"
-pattern = "AKTUELT\nUtiviklet {entity} i løpet av natten."
+pattern = "AKTUELT\nUtviklet {entity} i løpet av natten."
 gold_context = "AFFIRMED"
 trigger = "AKTUELT"
 section = "aktuelt"
@@ -1234,9 +1234,9 @@ section = "cave"
 # Medikamenter
 [[templates]]
 id = "sec_medikamenter_colon_01"
-pattern = "Medikamenter: Ingen {entity} i bruk."
+pattern = "Medikamenter: Ingen tegn til {entity} som bivirkning."
 gold_context = "NEGATED_EXISTENCE"
-trigger = "Ingen"
+trigger = "Ingen tegn til"
 section = "medikamenter"
 
 [[templates]]
@@ -1329,9 +1329,9 @@ section = "diagnoser"
 
 [[templates]]
 id = "sec_diagnoser_upper_01"
-pattern = "DIAGNOSER\nIngen {entity} klar diagnose."
+pattern = "DIAGNOSER\nIngen klar diagnose på {entity}."
 gold_context = "NEGATED_EXISTENCE"
-trigger = "Ingen"
+trigger = "Ingen klar diagnose"
 section = "diagnoser"
 
 [[templates]]

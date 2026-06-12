@@ -182,3 +182,36 @@ def test_fixtures_omsorgsradar_schema(runner: CliRunner, tmp_path: Path) -> None
     )
     assert list(df.columns) == ["state", "age", "sex", "diabetes", "notes"]
     assert len(df) == 600  # write_brfss_shaped_fixture always emits 600 rows
+
+
+def test_fixtures_fhir_cap_default(runner: CliRunner, tmp_path: Path) -> None:
+    """FHIR bundles are capped at min(n, 20) by default — no --n-fhir given."""
+    out = str(tmp_path / "fixtures_cap")
+    result = runner.invoke(cli, ["fixtures", "--seed", "1", "--n", "5", "--out", out])
+    assert result.exit_code == 0, result.output
+    fhir_dir = Path(out) / "fhir_safety_harness"
+    index = json.loads((fhir_dir / "index.json").read_text())
+    # n=5, cap=min(5,20)=5
+    assert index["n_patients"] == 5
+
+
+def test_fixtures_fhir_cap_large_n(runner: CliRunner, tmp_path: Path) -> None:
+    """With --n 30, FHIR defaults to 20 bundles (min(30, 20))."""
+    out = str(tmp_path / "fixtures_cap_large")
+    result = runner.invoke(cli, ["fixtures", "--seed", "1", "--n", "30", "--out", out])
+    assert result.exit_code == 0, result.output
+    fhir_dir = Path(out) / "fhir_safety_harness"
+    index = json.loads((fhir_dir / "index.json").read_text())
+    assert index["n_patients"] == 20
+
+
+def test_fixtures_fhir_n_fhir_override(runner: CliRunner, tmp_path: Path) -> None:
+    """--n-fhir overrides the default cap."""
+    out = str(tmp_path / "fixtures_override")
+    result = runner.invoke(
+        cli, ["fixtures", "--seed", "1", "--n", "30", "--n-fhir", "3", "--out", out]
+    )
+    assert result.exit_code == 0, result.output
+    fhir_dir = Path(out) / "fhir_safety_harness"
+    index = json.loads((fhir_dir / "index.json").read_text())
+    assert index["n_patients"] == 3

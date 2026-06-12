@@ -14,7 +14,7 @@ classifiers = [
 ]
 dependencies = [
     "numpy>=1.26",
-    "faker>=25.0",
+    "faker>=25.0,<26",
     "defusedxml>=0.7.1",
     "fhir-resources>=8",
     "fhir-validator>=0.2.2",
@@ -22,6 +22,9 @@ dependencies = [
     "pyarrow>=24.0.0",
     "click>=8.1",
 ]
+
+[project.optional-dependencies]
+nlp = ["spacy>=3.8"]
 
 [dependency-groups]
 dev = [

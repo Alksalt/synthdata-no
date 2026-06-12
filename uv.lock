@@ -346,14 +346,14 @@ wheels = [
 
 [[package]]
 name = "faker"
-version = "40.23.0"
+version = "25.9.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "tzdata", marker = "sys_platform == 'win32'" },
+    { name = "python-dateutil" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/f3/d6/fc071e5754815d9058e12ab549cc88e90f8f4ecf4dc33b6b750cdf4b622d/faker-40.23.0.tar.gz", hash = "sha256:f135e563f1f95f19346bb680bc2e43570bc43b7893e566023746f51f32c69dfc", size = 1972975, upload-time = "2026-06-10T20:53:21.611Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/c0/c9/63d4ad272fcec72b43d424e3a6ce9d8ca6a91c61f26fcbe68559d9552672/Faker-25.9.2.tar.gz", hash = "sha256:ca94843600a4089a91394023fef014bb41fee509f8c4beef1530018373e770fb", size = 1762726, upload-time = "2024-06-25T19:28:57.317Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/64/5f/824e6fb3e9d63408151dc9173994fa65bde620a67dde3a59354f5aecd497/faker-40.23.0-py3-none-any.whl", hash = "sha256:775922453e54afa42eaf60eac478fa3a969357f224d09a8022b93e3ad88f18ae", size = 2013046, upload-time = "2026-06-10T20:53:19.226Z" },
+    { url = "https://files.pythonhosted.org/packages/1c/e1/25dab6ae1b727b5a16e882ff7b65a3ad3f66ceba508d83378a9b72703c26/Faker-25.9.2-py3-none-any.whl", hash = "sha256:7f8cbd179a7351648bea31f53d021a2bdfdeb59e9b830e121a635916615e0ecd", size = 1799542, upload-time = "2024-06-25T19:28:51.027Z" },
 ]
 
 [[package]]
@@ -1145,6 +1145,11 @@ dependencies = [
     { name = "pyarrow" },
 ]
 
+[package.optional-dependencies]
+nlp = [
+    { name = "spacy" },
+]
+
 [package.dev-dependencies]
 dev = [
     { name = "pytest" },
@@ -1157,13 +1162,15 @@ dev = [
 requires-dist = [
     { name = "click", specifier = ">=8.1" },
     { name = "defusedxml", specifier = ">=0.7.1" },
-    { name = "faker", specifier = ">=25.0" },
+    { name = "faker", specifier = ">=25.0,<26" },
     { name = "fhir-resources", specifier = ">=8" },
     { name = "fhir-validator", specifier = ">=0.2.2" },
     { name = "numpy", specifier = ">=1.26" },
     { name = "pandas", specifier = ">=3.0.3" },
     { name = "pyarrow", specifier = ">=24.0.0" },
+    { name = "spacy", marker = "extra == 'nlp'", specifier = ">=3.8" },
 ]
+provides-extras = ["nlp"]
 
 [package.metadata.requires-dev]
 dev = [

@@ -1,5 +1,7 @@
 # synthdata-no
 
+![CI](https://github.com/Alksalt/synthdata-no/actions/workflows/ci.yml/badge.svg)
+
 **Deterministic generator of synthetic Norwegian health data.**
 
 Combines Tenor-range synthetic fødselsnummer, gold-annotated bokmål clinical text, no-basis-aware FHIR R4B bundles, and tabular microdata with Norwegian kommune marginals — all in one pip-installable package.
@@ -122,6 +124,14 @@ write_fixture_set(Path("fhir_out"), n_patients=5, seed=42)
 
 ### medspacy-no — ConText gold evaluation
 
+`to_spacy_examples` requires spaCy, which is an optional dependency:
+
+```bash
+pip install "synthdata-no[nlp]"   # installs spacy>=3.8 alongside synthdata-no
+# or, from source:
+uv add spacy
+```
+
 ```python
 from synthdata_no.export.medspacy import to_jsonl, to_spacy_examples
 import spacy
@@ -131,6 +141,8 @@ nlp = spacy.blank("nb")
 examples = to_spacy_examples(jsonl_path, nlp)
 # examples is a list of spacy.training.Example with gold entity spans
 ```
+
+Note: `to_jsonl` itself has no spaCy dependency and works with a bare `pip install synthdata-no`.
 
 ### fhir-safety-harness — baseline fixture set
 
@@ -146,11 +158,17 @@ write_fixture_set(Path("fixtures/"), n_patients=5, seed=42)
 
 ```python
 from synthdata_no.export.omsorgsradar import write_brfss_shaped_fixture
+import pandas as pd
 
 df = write_brfss_shaped_fixture("analyses/brfss-demo/microdata/brfss_sample.csv", seed=42)
 # 600 rows, columns: state (kommune code), age, sex, diabetes, notes
 # notes[0] and notes[1] carry planted Tenor-range fnr for the anonymize pipeline
+
+# Always pass dtype={'state': str} when reading back — state is a zero-padded 4-digit code:
+df = pd.read_csv("brfss_sample.csv", dtype={"state": str})
 ```
+
+`write_brfss_shaped_fixture` also accepts `top_n_kommuner=12` (default: 12 largest by population) to concentrate the 600 rows into fewer kommuner, ensuring enough rows per cell for k=10 analysis classes to survive. Increase to spread more thinly across the full KLASS snapshot.
 
 ### All three at once
 
@@ -173,6 +191,17 @@ uv run synthdata-no fixtures --seed 42 --n 10 --out fixtures/
 > Clinical text templates were authored and reviewed by a physician (utdannet lege, master i medisin) for structural realism. No realism claim is made until the owner has completed the sign-off checklist in `PHYSICIAN_REVIEW.md`. The templates **do not represent typical Norwegian EPJ/journal text** — they are synthetic training examples for NLP evaluation.
 >
 > GDPR anonymity is not self-certified. For advice on whether this data is personal data in your context, consult Datatilsynet.
+
+---
+
+## Determinism scope
+
+`synthdata-no` is deterministic at two levels:
+
+- **Structural fields** (fnr, ICD-10 codes, ATC codes, CPT draws, character offsets, FHIR UUIDs) are **always seed-deterministic** — same `seed` + `n` → byte-identical output, regardless of Python version or dependency versions.
+- **Faker-derived text** (names, addresses) is additionally **Faker-version-dependent**. `faker>=25.0,<26` is pinned for this reason. Byte-identical output for name/address fields is only guaranteed within the same pinned Faker minor version. If you need cross-environment reproducibility for downstream tests that depend on name strings, pin Faker explicitly in your own `requirements.txt`.
+
+In practice: fnr math, span offsets, and codes are always stable. Names may shift across Faker minor upgrades.
 
 ---
 

@@ -141,7 +141,7 @@ class TestRenderOffsets:
                 actual = text[sp["start"]:sp["end"]]
                 # The actual slice must be a non-empty string and match a filler
                 assert len(actual) > 0, f"Empty span in: {r}"
-                assert actual == actual.strip() or True  # entity may have surrounding context
+                assert actual == actual.strip(), f"Span has leading/trailing whitespace: {actual!r} in {r}"
 
     def test_aoa_filler_offset_integrity(self):
         """Fillers with æøå (dyspné, ødem) must have correct char — not byte — offsets."""
@@ -156,11 +156,15 @@ class TestRenderOffsets:
                 text = r["text"]
                 for sp in r["spans"]:
                     sliced = text[sp["start"]:sp["end"]]
-                    # Verify the slice equals a filler (any of our æøå ones)
+                    # Verify the filler is exactly matched — char offsets, not byte offsets
                     if sliced in aoa_fillers:
-                        assert sliced == text[sp["start"]:sp["end"]], (
-                            f"Offset mismatch for {sliced!r}: "
-                            f"text[{sp['start']}:{sp['end']}]={text[sp['start']:sp['end']]!r}"
+                        # The span width in chars must equal the filler's char length,
+                        # not its byte length (æ/ø/å are multi-byte in UTF-8).
+                        char_span_width = sp["end"] - sp["start"]
+                        assert char_span_width == len(sliced), (
+                            f"Span width {char_span_width} != char len {len(sliced)} "
+                            f"for filler {sliced!r} (byte len {len(sliced.encode('utf-8'))}). "
+                            f"Likely byte/char confusion. text={text!r}"
                         )
 
     def test_all_spans_match_fillers(self):

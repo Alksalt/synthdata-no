@@ -4,7 +4,7 @@
   "source": "FEST (Forskrivnings- og ekspedisjonsstøtte), DMP",
   "source_url": "https://fest.legemiddelverket.no/Fest/FestService250.svc",
   "curation_date": "2026-06-12",
-  "curation_note": "Hand-curated from the norfest fixture (3 entries from real 2026-06-08 FEST download at /Users/ol/agents/ehelse_project/norfest/tests/fixtures/m30/sample_m30.xml) and supplemented from FEST catalog via legemiddelsok.no. ATC names from WHO ATC index. All entries verified against FEST LegemiddelMerkevare catalog. Regenerate via scripts/extract_fest_codes.py pointing at a full FEST XML.",
+  "curation_note": "Hand-curated from the norfest project's FEST sample (3 entries from a real 2026-06-08 FEST download) and supplemented from FEST catalog via legemiddelsok.no. ATC names from WHO ATC index. All entries verified against FEST LegemiddelMerkevare catalog. Regenerate via scripts/extract_fest_codes.py pointing at a full FEST XML.",
   "medications": [
     {"atc": "C10AB05", "atc_name": "Fenofibrat", "varenavn": "Thylip", "fest_id": "ID_0008252E-A889-472A-B7EE-73D87EF1D4F0"},
     {"atc": "N02AJ07", "atc_name": "Kodein og acetylsalisylsyre", "varenavn": "Kodimagnyl Ikke-stoppende dak", "fest_id": "ID_000A27B8-3930-4264-80F9-CDB14C895662"},

@@ -170,12 +170,24 @@ def fhir_cmd(seed: int, n: int, out: str) -> None:
 @click.option("--seed", default=42, show_default=True, help="RNG seed.")
 @click.option("--n", default=10, show_default=True, help="Records per consumer fixture set.")
 @click.option(
+    "--n-fhir",
+    "n_fhir",
+    default=None,
+    type=int,
+    show_default=True,
+    help=(
+        "Number of FHIR patient bundles to emit. "
+        "Defaults to min(--n, 20) to avoid flooding large fixture runs. "
+        "Pass explicitly to override (e.g. --n-fhir 50)."
+    ),
+)
+@click.option(
     "--out",
     required=True,
     type=click.Path(),
     help="Output root directory. Sub-dirs: omsorgsradar/, medspacy_no/, fhir_safety_harness/.",
 )
-def fixtures_cmd(seed: int, n: int, out: str) -> None:
+def fixtures_cmd(seed: int, n: int, n_fhir: int | None, out: str) -> None:
     """Emit all three consumer fixture sets.
 
     Layout::
@@ -188,12 +200,16 @@ def fixtures_cmd(seed: int, n: int, out: str) -> None:
     Each fixture set is deterministic. seed=42, n=10 produces the default demo set.
     For the omsorgsradar fixture the canonical n is 600 rows (seed 42); here we honour
     the --n flag but note that the brfss-demo pipeline expects ≥600 rows for k=10 analysis.
+
+    FHIR bundles are capped at min(--n, 20) by default — each bundle is a full JSON file
+    and large n floods the output directory. Use --n-fhir to override.
     """
     from synthdata_no.export.omsorgsradar import write_brfss_shaped_fixture
     from synthdata_no.export.medspacy import to_jsonl
     from synthdata_no.export.safety_harness import write_fixture_set
 
     root = Path(out)
+    effective_n_fhir = n_fhir if n_fhir is not None else min(n, 20)
 
     # omsorgsradar
     omsr_dir = root / "omsorgsradar"
@@ -209,7 +225,7 @@ def fixtures_cmd(seed: int, n: int, out: str) -> None:
 
     # fhir-safety-harness
     fhir_dir = root / "fhir_safety_harness"
-    write_fixture_set(fhir_dir, n_patients=n, seed=seed)
-    click.echo(f"fhir_safety_harness fixture → {fhir_dir}")
+    write_fixture_set(fhir_dir, n_patients=effective_n_fhir, seed=seed)
+    click.echo(f"fhir_safety_harness fixture → {fhir_dir} ({effective_n_fhir} bundles)")
 
     click.echo(f"\nAll fixtures written to {root}")

@@ -22,6 +22,7 @@ Marked @pytest.mark.smoke. Runnable offline (no network, no cross-venv imports).
 from __future__ import annotations
 
 import json
+import os
 import re
 from pathlib import Path
 
@@ -62,9 +63,11 @@ def _valid_fnr_checksum(fnr: str) -> bool:
 # (a) omsorgsradar contract smoke
 # ---------------------------------------------------------------------------
 
+_OMSORGSRADAR_ROOT = os.environ.get("OMSORGSRADAR_ROOT")
 _BRFSS_ANALYSIS_TOML_PATH = (
-    Path("/Users/ol/agents/ehelse_project/omsorgsradar")
-    / "analyses/brfss-demo/analysis.toml"
+    Path(_OMSORGSRADAR_ROOT) / "analyses/brfss-demo/analysis.toml"
+    if _OMSORGSRADAR_ROOT
+    else None
 )
 
 
@@ -192,11 +195,16 @@ class TestOmsorgsradarSmoke:
         Only the 'state' dtype hint is explicit in the TOML (state = 'str').
         Other columns are inferred as numeric by pandas and must be integer-compatible.
         pandas 3.x uses StringDtype for dtype=str — we check is_string_dtype.
+
+        Set OMSORGSRADAR_ROOT to the omsorgsradar repo root to run this test.
+        Example: OMSORGSRADAR_ROOT=/path/to/omsorgsradar uv run pytest tests/test_consumer_smoke.py
         """
         from synthdata_no.export.omsorgsradar import write_brfss_shaped_fixture
 
-        if not _BRFSS_ANALYSIS_TOML_PATH.exists():
-            pytest.skip("omsorgsradar analysis.toml not found — cross-project path unavailable")
+        if _BRFSS_ANALYSIS_TOML_PATH is None or not _BRFSS_ANALYSIS_TOML_PATH.exists():
+            pytest.skip(
+                "omsorgsradar analysis.toml not found — set OMSORGSRADAR_ROOT to run cross-repo smoke"
+            )
 
         csv_path = tmp_path / "brfss_sample.csv"
         write_brfss_shaped_fixture(csv_path, seed=42)
