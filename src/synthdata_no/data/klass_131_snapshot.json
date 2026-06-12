@@ -1,0 +1,1442 @@
+{
+  "date": "2026-06-12",
+  "reference_date": "2024-01-01",
+  "source": "https://data.ssb.no/api/klass/v1/classifications/131",
+  "license": "NLOD 2.0 / CC BY 4.0 — Statistics Norway (SSB)",
+  "attribution": "Statistics Norway (SSB), data.ssb.no/api/klass, classification 131 (Kommuner i Norge)",
+  "count": 358,
+  "kommuner": [
+    {
+      "code": "0301",
+      "name": "Oslo"
+    },
+    {
+      "code": "1101",
+      "name": "Eigersund"
+    },
+    {
+      "code": "1103",
+      "name": "Stavanger"
+    },
+    {
+      "code": "1106",
+      "name": "Haugesund"
+    },
+    {
+      "code": "1108",
+      "name": "Sandnes"
+    },
+    {
+      "code": "1111",
+      "name": "Sokndal"
+    },
+    {
+      "code": "1112",
+      "name": "Lund"
+    },
+    {
+      "code": "1114",
+      "name": "Bjerkreim"
+    },
+    {
+      "code": "1119",
+      "name": "Hå"
+    },
+    {
+      "code": "1120",
+      "name": "Klepp"
+    },
+    {
+      "code": "1121",
+      "name": "Time"
+    },
+    {
+      "code": "1122",
+      "name": "Gjesdal"
+    },
+    {
+      "code": "1124",
+      "name": "Sola"
+    },
+    {
+      "code": "1127",
+      "name": "Randaberg"
+    },
+    {
+      "code": "1130",
+      "name": "Strand"
+    },
+    {
+      "code": "1133",
+      "name": "Hjelmeland"
+    },
+    {
+      "code": "1134",
+      "name": "Suldal"
+    },
+    {
+      "code": "1135",
+      "name": "Sauda"
+    },
+    {
+      "code": "1144",
+      "name": "Kvitsøy"
+    },
+    {
+      "code": "1145",
+      "name": "Bokn"
+    },
+    {
+      "code": "1146",
+      "name": "Tysvær"
+    },
+    {
+      "code": "1149",
+      "name": "Karmøy"
+    },
+    {
+      "code": "1151",
+      "name": "Utsira"
+    },
+    {
+      "code": "1160",
+      "name": "Vindafjord"
+    },
+    {
+      "code": "1505",
+      "name": "Kristiansund"
+    },
+    {
+      "code": "1506",
+      "name": "Molde"
+    },
+    {
+      "code": "1508",
+      "name": "Ålesund"
+    },
+    {
+      "code": "1511",
+      "name": "Vanylven"
+    },
+    {
+      "code": "1514",
+      "name": "Sande"
+    },
+    {
+      "code": "1515",
+      "name": "Herøy (Møre og Romsdal)"
+    },
+    {
+      "code": "1516",
+      "name": "Ulstein"
+    },
+    {
+      "code": "1517",
+      "name": "Hareid"
+    },
+    {
+      "code": "1520",
+      "name": "Ørsta"
+    },
+    {
+      "code": "1525",
+      "name": "Stranda"
+    },
+    {
+      "code": "1528",
+      "name": "Sykkylven"
+    },
+    {
+      "code": "1531",
+      "name": "Sula"
+    },
+    {
+      "code": "1532",
+      "name": "Giske"
+    },
+    {
+      "code": "1535",
+      "name": "Vestnes"
+    },
+    {
+      "code": "1539",
+      "name": "Rauma"
+    },
+    {
+      "code": "1547",
+      "name": "Aukra"
+    },
+    {
+      "code": "1554",
+      "name": "Averøy"
+    },
+    {
+      "code": "1557",
+      "name": "Gjemnes"
+    },
+    {
+      "code": "1560",
+      "name": "Tingvoll"
+    },
+    {
+      "code": "1563",
+      "name": "Sunndal"
+    },
+    {
+      "code": "1566",
+      "name": "Surnadal"
+    },
+    {
+      "code": "1573",
+      "name": "Smøla"
+    },
+    {
+      "code": "1576",
+      "name": "Aure"
+    },
+    {
+      "code": "1577",
+      "name": "Volda"
+    },
+    {
+      "code": "1578",
+      "name": "Fjord"
+    },
+    {
+      "code": "1579",
+      "name": "Hustadvika"
+    },
+    {
+      "code": "1580",
+      "name": "Haram"
+    },
+    {
+      "code": "1804",
+      "name": "Bodø"
+    },
+    {
+      "code": "1806",
+      "name": "Narvik"
+    },
+    {
+      "code": "1811",
+      "name": "Bindal"
+    },
+    {
+      "code": "1812",
+      "name": "Sømna"
+    },
+    {
+      "code": "1813",
+      "name": "Brønnøy"
+    },
+    {
+      "code": "1815",
+      "name": "Vega"
+    },
+    {
+      "code": "1816",
+      "name": "Vevelstad"
+    },
+    {
+      "code": "1818",
+      "name": "Herøy (Nordland)"
+    },
+    {
+      "code": "1820",
+      "name": "Alstahaug"
+    },
+    {
+      "code": "1822",
+      "name": "Leirfjord"
+    },
+    {
+      "code": "1824",
+      "name": "Vefsn"
+    },
+    {
+      "code": "1825",
+      "name": "Grane"
+    },
+    {
+      "code": "1826",
+      "name": "Aarborte - Hattfjelldal"
+    },
+    {
+      "code": "1827",
+      "name": "Dønna"
+    },
+    {
+      "code": "1828",
+      "name": "Nesna"
+    },
+    {
+      "code": "1832",
+      "name": "Hemnes"
+    },
+    {
+      "code": "1833",
+      "name": "Rana - Raane"
+    },
+    {
+      "code": "1834",
+      "name": "Lurøy"
+    },
+    {
+      "code": "1835",
+      "name": "Træna"
+    },
+    {
+      "code": "1836",
+      "name": "Rødøy"
+    },
+    {
+      "code": "1837",
+      "name": "Meløy"
+    },
+    {
+      "code": "1838",
+      "name": "Gildeskål"
+    },
+    {
+      "code": "1839",
+      "name": "Beiarn"
+    },
+    {
+      "code": "1840",
+      "name": "Saltdal"
+    },
+    {
+      "code": "1841",
+      "name": "Fauske - Fuossko"
+    },
+    {
+      "code": "1845",
+      "name": "Sørfold - Fuolldá"
+    },
+    {
+      "code": "1848",
+      "name": "Steigen"
+    },
+    {
+      "code": "1851",
+      "name": "Lødingen"
+    },
+    {
+      "code": "1853",
+      "name": "Evenes - Evenášši"
+    },
+    {
+      "code": "1856",
+      "name": "Røst"
+    },
+    {
+      "code": "1857",
+      "name": "Værøy"
+    },
+    {
+      "code": "1859",
+      "name": "Flakstad"
+    },
+    {
+      "code": "1860",
+      "name": "Vestvågøy"
+    },
+    {
+      "code": "1865",
+      "name": "Vågan"
+    },
+    {
+      "code": "1866",
+      "name": "Hadsel"
+    },
+    {
+      "code": "1867",
+      "name": "Bø"
+    },
+    {
+      "code": "1868",
+      "name": "Øksnes"
+    },
+    {
+      "code": "1870",
+      "name": "Sortland - Suortá"
+    },
+    {
+      "code": "1871",
+      "name": "Andøy"
+    },
+    {
+      "code": "1874",
+      "name": "Moskenes"
+    },
+    {
+      "code": "1875",
+      "name": "Hábmer - Hamarøy"
+    },
+    {
+      "code": "3101",
+      "name": "Halden"
+    },
+    {
+      "code": "3103",
+      "name": "Moss"
+    },
+    {
+      "code": "3105",
+      "name": "Sarpsborg"
+    },
+    {
+      "code": "3107",
+      "name": "Fredrikstad"
+    },
+    {
+      "code": "3110",
+      "name": "Hvaler"
+    },
+    {
+      "code": "3112",
+      "name": "Råde"
+    },
+    {
+      "code": "3114",
+      "name": "Våler (Østfold)"
+    },
+    {
+      "code": "3116",
+      "name": "Skiptvet"
+    },
+    {
+      "code": "3118",
+      "name": "Indre Østfold"
+    },
+    {
+      "code": "3120",
+      "name": "Rakkestad"
+    },
+    {
+      "code": "3122",
+      "name": "Marker"
+    },
+    {
+      "code": "3124",
+      "name": "Aremark"
+    },
+    {
+      "code": "3201",
+      "name": "Bærum"
+    },
+    {
+      "code": "3203",
+      "name": "Asker"
+    },
+    {
+      "code": "3205",
+      "name": "Lillestrøm"
+    },
+    {
+      "code": "3207",
+      "name": "Nordre Follo"
+    },
+    {
+      "code": "3209",
+      "name": "Ullensaker"
+    },
+    {
+      "code": "3212",
+      "name": "Nesodden"
+    },
+    {
+      "code": "3214",
+      "name": "Frogn"
+    },
+    {
+      "code": "3216",
+      "name": "Vestby"
+    },
+    {
+      "code": "3218",
+      "name": "Ås"
+    },
+    {
+      "code": "3220",
+      "name": "Enebakk"
+    },
+    {
+      "code": "3222",
+      "name": "Lørenskog"
+    },
+    {
+      "code": "3224",
+      "name": "Rælingen"
+    },
+    {
+      "code": "3226",
+      "name": "Aurskog-Høland"
+    },
+    {
+      "code": "3228",
+      "name": "Nes"
+    },
+    {
+      "code": "3230",
+      "name": "Gjerdrum"
+    },
+    {
+      "code": "3232",
+      "name": "Nittedal"
+    },
+    {
+      "code": "3234",
+      "name": "Lunner"
+    },
+    {
+      "code": "3236",
+      "name": "Jevnaker"
+    },
+    {
+      "code": "3238",
+      "name": "Nannestad"
+    },
+    {
+      "code": "3240",
+      "name": "Eidsvoll"
+    },
+    {
+      "code": "3242",
+      "name": "Hurdal"
+    },
+    {
+      "code": "3301",
+      "name": "Drammen"
+    },
+    {
+      "code": "3303",
+      "name": "Kongsberg"
+    },
+    {
+      "code": "3305",
+      "name": "Ringerike"
+    },
+    {
+      "code": "3310",
+      "name": "Hole"
+    },
+    {
+      "code": "3312",
+      "name": "Lier"
+    },
+    {
+      "code": "3314",
+      "name": "Øvre Eiker"
+    },
+    {
+      "code": "3316",
+      "name": "Modum"
+    },
+    {
+      "code": "3318",
+      "name": "Krødsherad"
+    },
+    {
+      "code": "3320",
+      "name": "Flå"
+    },
+    {
+      "code": "3322",
+      "name": "Nesbyen"
+    },
+    {
+      "code": "3324",
+      "name": "Gol"
+    },
+    {
+      "code": "3326",
+      "name": "Hemsedal"
+    },
+    {
+      "code": "3328",
+      "name": "Ål"
+    },
+    {
+      "code": "3330",
+      "name": "Hol"
+    },
+    {
+      "code": "3332",
+      "name": "Sigdal"
+    },
+    {
+      "code": "3334",
+      "name": "Flesberg"
+    },
+    {
+      "code": "3336",
+      "name": "Rollag"
+    },
+    {
+      "code": "3338",
+      "name": "Nore og Uvdal"
+    },
+    {
+      "code": "3401",
+      "name": "Kongsvinger"
+    },
+    {
+      "code": "3403",
+      "name": "Hamar"
+    },
+    {
+      "code": "3405",
+      "name": "Lillehammer"
+    },
+    {
+      "code": "3407",
+      "name": "Gjøvik"
+    },
+    {
+      "code": "3411",
+      "name": "Ringsaker"
+    },
+    {
+      "code": "3412",
+      "name": "Løten"
+    },
+    {
+      "code": "3413",
+      "name": "Stange"
+    },
+    {
+      "code": "3414",
+      "name": "Nord-Odal"
+    },
+    {
+      "code": "3415",
+      "name": "Sør-Odal"
+    },
+    {
+      "code": "3416",
+      "name": "Eidskog"
+    },
+    {
+      "code": "3417",
+      "name": "Grue"
+    },
+    {
+      "code": "3418",
+      "name": "Åsnes"
+    },
+    {
+      "code": "3419",
+      "name": "Våler (Innlandet)"
+    },
+    {
+      "code": "3420",
+      "name": "Elverum"
+    },
+    {
+      "code": "3421",
+      "name": "Trysil"
+    },
+    {
+      "code": "3422",
+      "name": "Åmot"
+    },
+    {
+      "code": "3423",
+      "name": "Stor-Elvdal"
+    },
+    {
+      "code": "3424",
+      "name": "Rendalen"
+    },
+    {
+      "code": "3425",
+      "name": "Engerdal"
+    },
+    {
+      "code": "3426",
+      "name": "Tolga"
+    },
+    {
+      "code": "3427",
+      "name": "Tynset"
+    },
+    {
+      "code": "3428",
+      "name": "Alvdal"
+    },
+    {
+      "code": "3429",
+      "name": "Folldal"
+    },
+    {
+      "code": "3430",
+      "name": "Os"
+    },
+    {
+      "code": "3431",
+      "name": "Dovre"
+    },
+    {
+      "code": "3432",
+      "name": "Lesja"
+    },
+    {
+      "code": "3433",
+      "name": "Skjåk"
+    },
+    {
+      "code": "3434",
+      "name": "Lom"
+    },
+    {
+      "code": "3435",
+      "name": "Vågå"
+    },
+    {
+      "code": "3436",
+      "name": "Nord-Fron"
+    },
+    {
+      "code": "3437",
+      "name": "Sel"
+    },
+    {
+      "code": "3438",
+      "name": "Sør-Fron"
+    },
+    {
+      "code": "3439",
+      "name": "Ringebu"
+    },
+    {
+      "code": "3440",
+      "name": "Øyer"
+    },
+    {
+      "code": "3441",
+      "name": "Gausdal"
+    },
+    {
+      "code": "3442",
+      "name": "Østre Toten"
+    },
+    {
+      "code": "3443",
+      "name": "Vestre Toten"
+    },
+    {
+      "code": "3446",
+      "name": "Gran"
+    },
+    {
+      "code": "3447",
+      "name": "Søndre Land"
+    },
+    {
+      "code": "3448",
+      "name": "Nordre Land"
+    },
+    {
+      "code": "3449",
+      "name": "Sør-Aurdal"
+    },
+    {
+      "code": "3450",
+      "name": "Etnedal"
+    },
+    {
+      "code": "3451",
+      "name": "Nord-Aurdal"
+    },
+    {
+      "code": "3452",
+      "name": "Vestre Slidre"
+    },
+    {
+      "code": "3453",
+      "name": "Øystre Slidre"
+    },
+    {
+      "code": "3454",
+      "name": "Vang"
+    },
+    {
+      "code": "3901",
+      "name": "Horten"
+    },
+    {
+      "code": "3903",
+      "name": "Holmestrand"
+    },
+    {
+      "code": "3905",
+      "name": "Tønsberg"
+    },
+    {
+      "code": "3907",
+      "name": "Sandefjord"
+    },
+    {
+      "code": "3909",
+      "name": "Larvik"
+    },
+    {
+      "code": "3911",
+      "name": "Færder"
+    },
+    {
+      "code": "4001",
+      "name": "Porsgrunn"
+    },
+    {
+      "code": "4003",
+      "name": "Skien"
+    },
+    {
+      "code": "4005",
+      "name": "Notodden"
+    },
+    {
+      "code": "4010",
+      "name": "Siljan"
+    },
+    {
+      "code": "4012",
+      "name": "Bamble"
+    },
+    {
+      "code": "4014",
+      "name": "Kragerø"
+    },
+    {
+      "code": "4016",
+      "name": "Drangedal"
+    },
+    {
+      "code": "4018",
+      "name": "Nome"
+    },
+    {
+      "code": "4020",
+      "name": "Midt-Telemark"
+    },
+    {
+      "code": "4022",
+      "name": "Seljord"
+    },
+    {
+      "code": "4024",
+      "name": "Hjartdal"
+    },
+    {
+      "code": "4026",
+      "name": "Tinn"
+    },
+    {
+      "code": "4028",
+      "name": "Kviteseid"
+    },
+    {
+      "code": "4030",
+      "name": "Nissedal"
+    },
+    {
+      "code": "4032",
+      "name": "Fyresdal"
+    },
+    {
+      "code": "4034",
+      "name": "Tokke"
+    },
+    {
+      "code": "4036",
+      "name": "Vinje"
+    },
+    {
+      "code": "4201",
+      "name": "Risør"
+    },
+    {
+      "code": "4202",
+      "name": "Grimstad"
+    },
+    {
+      "code": "4203",
+      "name": "Arendal"
+    },
+    {
+      "code": "4204",
+      "name": "Kristiansand"
+    },
+    {
+      "code": "4205",
+      "name": "Lindesnes"
+    },
+    {
+      "code": "4206",
+      "name": "Farsund"
+    },
+    {
+      "code": "4207",
+      "name": "Flekkefjord"
+    },
+    {
+      "code": "4211",
+      "name": "Gjerstad"
+    },
+    {
+      "code": "4212",
+      "name": "Vegårshei"
+    },
+    {
+      "code": "4213",
+      "name": "Tvedestrand"
+    },
+    {
+      "code": "4214",
+      "name": "Froland"
+    },
+    {
+      "code": "4215",
+      "name": "Lillesand"
+    },
+    {
+      "code": "4216",
+      "name": "Birkenes"
+    },
+    {
+      "code": "4217",
+      "name": "Åmli"
+    },
+    {
+      "code": "4218",
+      "name": "Iveland"
+    },
+    {
+      "code": "4219",
+      "name": "Evje og Hornnes"
+    },
+    {
+      "code": "4220",
+      "name": "Bygland"
+    },
+    {
+      "code": "4221",
+      "name": "Valle"
+    },
+    {
+      "code": "4222",
+      "name": "Bykle"
+    },
+    {
+      "code": "4223",
+      "name": "Vennesla"
+    },
+    {
+      "code": "4224",
+      "name": "Åseral"
+    },
+    {
+      "code": "4225",
+      "name": "Lyngdal"
+    },
+    {
+      "code": "4226",
+      "name": "Hægebostad"
+    },
+    {
+      "code": "4227",
+      "name": "Kvinesdal"
+    },
+    {
+      "code": "4228",
+      "name": "Sirdal"
+    },
+    {
+      "code": "4601",
+      "name": "Bergen"
+    },
+    {
+      "code": "4602",
+      "name": "Kinn"
+    },
+    {
+      "code": "4611",
+      "name": "Etne"
+    },
+    {
+      "code": "4612",
+      "name": "Sveio"
+    },
+    {
+      "code": "4613",
+      "name": "Bømlo"
+    },
+    {
+      "code": "4614",
+      "name": "Stord"
+    },
+    {
+      "code": "4615",
+      "name": "Fitjar"
+    },
+    {
+      "code": "4616",
+      "name": "Tysnes"
+    },
+    {
+      "code": "4617",
+      "name": "Kvinnherad"
+    },
+    {
+      "code": "4618",
+      "name": "Ullensvang"
+    },
+    {
+      "code": "4619",
+      "name": "Eidfjord"
+    },
+    {
+      "code": "4620",
+      "name": "Ulvik"
+    },
+    {
+      "code": "4621",
+      "name": "Voss"
+    },
+    {
+      "code": "4622",
+      "name": "Kvam"
+    },
+    {
+      "code": "4623",
+      "name": "Samnanger"
+    },
+    {
+      "code": "4624",
+      "name": "Bjørnafjorden"
+    },
+    {
+      "code": "4625",
+      "name": "Austevoll"
+    },
+    {
+      "code": "4626",
+      "name": "Øygarden"
+    },
+    {
+      "code": "4627",
+      "name": "Askøy"
+    },
+    {
+      "code": "4628",
+      "name": "Vaksdal"
+    },
+    {
+      "code": "4629",
+      "name": "Modalen"
+    },
+    {
+      "code": "4630",
+      "name": "Osterøy"
+    },
+    {
+      "code": "4631",
+      "name": "Alver"
+    },
+    {
+      "code": "4632",
+      "name": "Austrheim"
+    },
+    {
+      "code": "4633",
+      "name": "Fedje"
+    },
+    {
+      "code": "4634",
+      "name": "Masfjorden"
+    },
+    {
+      "code": "4635",
+      "name": "Gulen"
+    },
+    {
+      "code": "4636",
+      "name": "Solund"
+    },
+    {
+      "code": "4637",
+      "name": "Hyllestad"
+    },
+    {
+      "code": "4638",
+      "name": "Høyanger"
+    },
+    {
+      "code": "4639",
+      "name": "Vik"
+    },
+    {
+      "code": "4640",
+      "name": "Sogndal"
+    },
+    {
+      "code": "4641",
+      "name": "Aurland"
+    },
+    {
+      "code": "4642",
+      "name": "Lærdal"
+    },
+    {
+      "code": "4643",
+      "name": "Årdal"
+    },
+    {
+      "code": "4644",
+      "name": "Luster"
+    },
+    {
+      "code": "4645",
+      "name": "Askvoll"
+    },
+    {
+      "code": "4646",
+      "name": "Fjaler"
+    },
+    {
+      "code": "4647",
+      "name": "Sunnfjord"
+    },
+    {
+      "code": "4648",
+      "name": "Bremanger"
+    },
+    {
+      "code": "4649",
+      "name": "Stad"
+    },
+    {
+      "code": "4650",
+      "name": "Gloppen"
+    },
+    {
+      "code": "4651",
+      "name": "Stryn"
+    },
+    {
+      "code": "5001",
+      "name": "Trondheim - Tråante"
+    },
+    {
+      "code": "5006",
+      "name": "Steinkjer"
+    },
+    {
+      "code": "5007",
+      "name": "Namsos - Nåavmesjenjaelmie"
+    },
+    {
+      "code": "5014",
+      "name": "Frøya"
+    },
+    {
+      "code": "5020",
+      "name": "Osen"
+    },
+    {
+      "code": "5021",
+      "name": "Oppdal"
+    },
+    {
+      "code": "5022",
+      "name": "Rennebu"
+    },
+    {
+      "code": "5025",
+      "name": "Røros - Rosse"
+    },
+    {
+      "code": "5026",
+      "name": "Holtålen"
+    },
+    {
+      "code": "5027",
+      "name": "Midtre Gauldal"
+    },
+    {
+      "code": "5028",
+      "name": "Melhus"
+    },
+    {
+      "code": "5029",
+      "name": "Skaun"
+    },
+    {
+      "code": "5031",
+      "name": "Malvik"
+    },
+    {
+      "code": "5032",
+      "name": "Selbu"
+    },
+    {
+      "code": "5033",
+      "name": "Tydal"
+    },
+    {
+      "code": "5034",
+      "name": "Meråker"
+    },
+    {
+      "code": "5035",
+      "name": "Stjørdal"
+    },
+    {
+      "code": "5036",
+      "name": "Frosta"
+    },
+    {
+      "code": "5037",
+      "name": "Levanger - Levangke"
+    },
+    {
+      "code": "5038",
+      "name": "Verdal"
+    },
+    {
+      "code": "5041",
+      "name": "Snåase - Snåsa"
+    },
+    {
+      "code": "5042",
+      "name": "Lierne"
+    },
+    {
+      "code": "5043",
+      "name": "Raarvihke - Røyrvik"
+    },
+    {
+      "code": "5044",
+      "name": "Namsskogan"
+    },
+    {
+      "code": "5045",
+      "name": "Grong"
+    },
+    {
+      "code": "5046",
+      "name": "Høylandet"
+    },
+    {
+      "code": "5047",
+      "name": "Overhalla"
+    },
+    {
+      "code": "5049",
+      "name": "Flatanger"
+    },
+    {
+      "code": "5052",
+      "name": "Leka"
+    },
+    {
+      "code": "5053",
+      "name": "Inderøy"
+    },
+    {
+      "code": "5054",
+      "name": "Indre Fosen"
+    },
+    {
+      "code": "5055",
+      "name": "Heim"
+    },
+    {
+      "code": "5056",
+      "name": "Hitra"
+    },
+    {
+      "code": "5057",
+      "name": "Ørland"
+    },
+    {
+      "code": "5058",
+      "name": "Åfjord"
+    },
+    {
+      "code": "5059",
+      "name": "Orkland"
+    },
+    {
+      "code": "5060",
+      "name": "Nærøysund"
+    },
+    {
+      "code": "5061",
+      "name": "Rindal"
+    },
+    {
+      "code": "5501",
+      "name": "Tromsø"
+    },
+    {
+      "code": "5503",
+      "name": "Harstad - Hárstták"
+    },
+    {
+      "code": "5510",
+      "name": "Kvæfjord"
+    },
+    {
+      "code": "5512",
+      "name": "Dielddanuorri - Tjeldsund"
+    },
+    {
+      "code": "5514",
+      "name": "Ibestad"
+    },
+    {
+      "code": "5516",
+      "name": "Gratangen - Rivtták"
+    },
+    {
+      "code": "5518",
+      "name": "Loabák - Lavangen"
+    },
+    {
+      "code": "5520",
+      "name": "Bardu"
+    },
+    {
+      "code": "5522",
+      "name": "Salangen"
+    },
+    {
+      "code": "5524",
+      "name": "Målselv"
+    },
+    {
+      "code": "5526",
+      "name": "Sørreisa"
+    },
+    {
+      "code": "5528",
+      "name": "Dyrøy"
+    },
+    {
+      "code": "5530",
+      "name": "Senja"
+    },
+    {
+      "code": "5532",
+      "name": "Balsfjord"
+    },
+    {
+      "code": "5534",
+      "name": "Karlsøy"
+    },
+    {
+      "code": "5536",
+      "name": "Lyngen"
+    },
+    {
+      "code": "5538",
+      "name": "Storfjord - Omasvuotna - Omasvuono"
+    },
+    {
+      "code": "5540",
+      "name": "Gáivuotna - Kåfjord - Kaivuono"
+    },
+    {
+      "code": "5542",
+      "name": "Skjervøy"
+    },
+    {
+      "code": "5544",
+      "name": "Nordreisa - Ráisa - Raisi"
+    },
+    {
+      "code": "5546",
+      "name": "Kvænangen"
+    },
+    {
+      "code": "5601",
+      "name": "Alta"
+    },
+    {
+      "code": "5603",
+      "name": "Hammerfest - Hámmerfeasta"
+    },
+    {
+      "code": "5605",
+      "name": "Sør-Varanger"
+    },
+    {
+      "code": "5607",
+      "name": "Vadsø"
+    },
+    {
+      "code": "5610",
+      "name": "Kárášjohka - Karasjok"
+    },
+    {
+      "code": "5612",
+      "name": "Guovdageaidnu - Kautokeino"
+    },
+    {
+      "code": "5614",
+      "name": "Loppa"
+    },
+    {
+      "code": "5616",
+      "name": "Hasvik"
+    },
+    {
+      "code": "5618",
+      "name": "Måsøy"
+    },
+    {
+      "code": "5620",
+      "name": "Nordkapp"
+    },
+    {
+      "code": "5622",
+      "name": "Porsanger - Porsángu - Porsanki"
+    },
+    {
+      "code": "5624",
+      "name": "Lebesby"
+    },
+    {
+      "code": "5626",
+      "name": "Gamvik"
+    },
+    {
+      "code": "5628",
+      "name": "Deatnu - Tana"
+    },
+    {
+      "code": "5630",
+      "name": "Berlevåg"
+    },
+    {
+      "code": "5632",
+      "name": "Båtsfjord"
+    },
+    {
+      "code": "5634",
+      "name": "Vardø"
+    },
+    {
+      "code": "5636",
+      "name": "Unjárga - Nesseby"
+    },
+    {
+      "code": "9999",
+      "name": "Uoppgitt"
+    }
+  ]
+}
