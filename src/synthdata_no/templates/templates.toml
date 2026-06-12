@@ -1,0 +1,1478 @@
+# templates.toml — synthetic Norwegian clinical text templates for ConText evaluation.
+#
+# Schema per template:
+#   id           = unique string identifier
+#   pattern      = text with {entity} and optional {entity2} slots; trigger word/phrase
+#                  is embedded literally in the pattern text.
+#   gold_context = one of: NEGATED_EXISTENCE, POSSIBLE_EXISTENCE, HYPOTHETICAL,
+#                  HISTORICAL, FAMILY, AFFIRMED
+#   trigger      = the exact cue phrase present in pattern (for meta field)
+#   section      = clinical section label (plain name, not the heading literal)
+#   multi_span   = true if record encodes two spans (conjunction traps)
+#   entity2_gold = gold_context for the second span (only when multi_span = true)
+#
+# Source citations:
+#   [Skeppstedt 2011] Skeppstedt M., "Negation detection in Swedish clinical text:
+#       An adaption of NegEx to Swedish", J. Biomed. Semantics 2(Suppl 3):S3.
+#       Norwegian candidates ported via docs/SEEDS.md NO-CANDIDATES table.
+#   [Tromsø 2018]   Budrionis et al., UNN/DSV poster — rule counts + examples.
+#   [medspacy-no SEEDS] docs/SEEDS.md — author-proposed Norwegian cues with
+#       physician-review flags preserved.
+
+# ──────────────────────────────────────────────
+# PRE-NEGATION — NEGATED_EXISTENCE  (forward cues)
+# Source: Skeppstedt 2011 / medspacy-no SEEDS NO-CANDIDATES
+# ──────────────────────────────────────────────
+
+[[templates]]
+id = "pre_neg_ikke_01"
+pattern = "Pasienten har ikke {entity}."
+gold_context = "NEGATED_EXISTENCE"
+trigger = "ikke"
+section = "aktuelt"
+
+[[templates]]
+id = "pre_neg_ikke_02"
+pattern = "Det er ikke tegn til {entity}."
+gold_context = "NEGATED_EXISTENCE"
+trigger = "ikke tegn til"
+section = "aktuelt"
+
+[[templates]]
+id = "pre_neg_ikke_03"
+pattern = "Pasienten har ikke hatt {entity} tidligere."
+gold_context = "NEGATED_EXISTENCE"
+trigger = "ikke hatt"
+section = "tidligere_sykdommer"
+
+[[templates]]
+id = "pre_neg_ingen_01"
+pattern = "Det er ingen {entity} å bemerke."
+gold_context = "NEGATED_EXISTENCE"
+trigger = "ingen"
+section = "aktuelt"
+
+[[templates]]
+id = "pre_neg_ingen_02"
+pattern = "Ingen tegn til {entity} ved undersøkelse."
+gold_context = "NEGATED_EXISTENCE"
+trigger = "Ingen tegn til"
+section = "status_presens"
+
+[[templates]]
+id = "pre_neg_ingen_tegn_til_01"
+pattern = "Det foreligger ingen tegn til {entity}."
+gold_context = "NEGATED_EXISTENCE"
+trigger = "ingen tegn til"
+section = "vurdering"
+
+[[templates]]
+id = "pre_neg_uten_01"
+pattern = "Pasienten er uten {entity}."
+gold_context = "NEGATED_EXISTENCE"
+trigger = "uten"
+section = "status_presens"
+
+[[templates]]
+id = "pre_neg_uten_02"
+pattern = "Undersøkelsen er uten tegn til {entity}."
+gold_context = "NEGATED_EXISTENCE"
+trigger = "uten tegn til"
+section = "status_presens"
+
+[[templates]]
+id = "pre_neg_uten_noen_01"
+pattern = "Pasienten har uten noen {entity} de siste ukene."
+gold_context = "NEGATED_EXISTENCE"
+trigger = "uten noen"
+section = "aktuelt"
+
+[[templates]]
+id = "pre_neg_fri_for_01"
+pattern = "Pasienten er fri for {entity}."
+gold_context = "NEGATED_EXISTENCE"
+trigger = "fri for"
+section = "status_presens"
+
+[[templates]]
+id = "pre_neg_aldri_hatt_01"
+pattern = "Pasienten har aldri hatt {entity}."
+gold_context = "NEGATED_EXISTENCE"
+trigger = "aldri hatt"
+section = "tidligere_sykdommer"
+
+[[templates]]
+id = "pre_neg_aldri_01"
+pattern = "Aldri hatt {entity} ifølge pasient."
+gold_context = "NEGATED_EXISTENCE"
+trigger = "Aldri hatt"
+section = "anamnese"
+
+[[templates]]
+id = "pre_neg_ej_01"
+pattern = "Ej {entity} ved klinisk undersøkelse."
+gold_context = "NEGATED_EXISTENCE"
+trigger = "Ej"
+section = "status_presens"
+
+[[templates]]
+id = "pre_neg_mangler_01"
+pattern = "Mangler tegn på {entity}."
+gold_context = "NEGATED_EXISTENCE"
+trigger = "Mangler tegn på"
+section = "vurdering"
+
+[[templates]]
+id = "pre_neg_fravær_av_01"
+pattern = "Det er fravær av {entity}."
+gold_context = "NEGATED_EXISTENCE"
+trigger = "fravær av"
+section = "aktuelt"
+
+[[templates]]
+id = "pre_neg_ikke_kan_01"
+pattern = "Kan ikke {entity} påvises ved undersøkelse."
+gold_context = "NEGATED_EXISTENCE"
+trigger = "Kan ikke"
+section = "status_presens"
+
+[[templates]]
+id = "pre_neg_ikke_viser_01"
+pattern = "Pasienten viser ikke {entity}."
+gold_context = "NEGATED_EXISTENCE"
+trigger = "viser ikke"
+section = "aktuelt"
+
+[[templates]]
+id = "pre_neg_ikke_tegn_01"
+pattern = "Ikke tegn til {entity} i dette forløpet."
+gold_context = "NEGATED_EXISTENCE"
+trigger = "Ikke tegn til"
+section = "sammenfatning"
+
+[[templates]]
+id = "pre_neg_intet_01"
+pattern = "Intet som tyder på {entity}."
+gold_context = "NEGATED_EXISTENCE"
+trigger = "Intet som tyder på"
+section = "vurdering"
+
+[[templates]]
+id = "pre_neg_ikke_har_01"
+pattern = "Ikke har pasienten {entity} tidligere."
+gold_context = "NEGATED_EXISTENCE"
+trigger = "Ikke har"
+section = "tidligere_sykdommer"
+
+[[templates]]
+id = "pre_neg_pasienten_ikke_01"
+pattern = "Pasienten ikke rapportert {entity}."
+gold_context = "NEGATED_EXISTENCE"
+trigger = "Pasienten ikke"
+section = "aktuelt"
+
+[[templates]]
+id = "pre_neg_foler_seg_ikke_01"
+pattern = "Pasienten føler seg ikke preget av {entity}."
+gold_context = "NEGATED_EXISTENCE"
+trigger = "føler seg ikke"
+section = "aktuelt"
+
+[[templates]]
+id = "pre_neg_mangel_pa_01"
+pattern = "Det er mangel på {entity} i sykehistorien."
+gold_context = "NEGATED_EXISTENCE"
+trigger = "mangel på"
+section = "anamnese"
+
+# ──────────────────────────────────────────────
+# POST-NEGATION — NEGATED_EXISTENCE  (backward cues)
+# Source: Skeppstedt 2011 / medspacy-no SEEDS NO-CANDIDATES
+# ──────────────────────────────────────────────
+
+[[templates]]
+id = "post_neg_mangler_01"
+pattern = "{entity} mangler."
+gold_context = "NEGATED_EXISTENCE"
+trigger = "mangler"
+section = "status_presens"
+
+[[templates]]
+id = "post_neg_benektes_01"
+pattern = "{entity} benektes av pasienten."
+gold_context = "NEGATED_EXISTENCE"
+trigger = "benektes"
+section = "anamnese"
+
+[[templates]]
+id = "post_neg_negativt_01"
+pattern = "CRP negativt, {entity} negativt."
+gold_context = "NEGATED_EXISTENCE"
+trigger = "negativt"
+section = "status_presens"
+
+[[templates]]
+id = "post_neg_ua_01"
+pattern = "{entity} u.a."
+gold_context = "NEGATED_EXISTENCE"
+trigger = "u.a."
+section = "status_presens"
+
+[[templates]]
+id = "post_neg_iab_01"
+pattern = "{entity} i.a.b."
+gold_context = "NEGATED_EXISTENCE"
+trigger = "i.a.b."
+section = "status_presens"
+
+[[templates]]
+id = "post_neg_utelukket_01"
+pattern = "{entity} utelukket etter grundig undersøkelse."
+gold_context = "NEGATED_EXISTENCE"
+trigger = "utelukket"
+section = "vurdering"
+
+[[templates]]
+id = "post_neg_intet_a_bemerke_01"
+pattern = "{entity} intet å bemerke."
+gold_context = "NEGATED_EXISTENCE"
+trigger = "intet å bemerke"
+section = "status_presens"
+
+[[templates]]
+id = "post_neg_benekter_01"
+pattern = "Pasienten benekter {entity}."
+gold_context = "NEGATED_EXISTENCE"
+trigger = "benekter"
+section = "anamnese"
+
+[[templates]]
+id = "post_neg_ikke_pvist_01"
+pattern = "{entity} ikke påvist."
+gold_context = "NEGATED_EXISTENCE"
+trigger = "ikke påvist"
+section = "diagnoser"
+
+[[templates]]
+id = "post_neg_usannsynlig_01"
+pattern = "{entity} er usannsynlig i dette tilfellet."
+gold_context = "NEGATED_EXISTENCE"
+trigger = "usannsynlig"
+section = "vurdering"
+
+[[templates]]
+id = "post_neg_mangler_02"
+pattern = "Tegn på {entity} mangler."
+gold_context = "NEGATED_EXISTENCE"
+trigger = "mangler"
+section = "aktuelt"
+
+[[templates]]
+id = "post_neg_utelukkes_01"
+pattern = "{entity} utelukkes klinisk."
+gold_context = "NEGATED_EXISTENCE"
+trigger = "utelukkes"
+section = "vurdering"
+
+# ──────────────────────────────────────────────
+# PSEUDO-NEGATION — POSSIBLE_EXISTENCE or AFFIRMED
+# Source: Skeppstedt 2011 pseu tags / medspacy-no SEEDS
+# CRITICAL: These must NOT be labeled NEGATED_EXISTENCE
+# ──────────────────────────────────────────────
+
+[[templates]]
+id = "pseudo_kan_ikke_utelukkes_01"
+pattern = "{entity} kan ikke utelukkes."
+gold_context = "POSSIBLE_EXISTENCE"
+trigger = "kan ikke utelukkes"
+section = "vurdering"
+
+[[templates]]
+id = "pseudo_kan_ikke_utelukkes_02"
+pattern = "Man kan ikke utelukke {entity} på dette stadiet."
+gold_context = "POSSIBLE_EXISTENCE"
+trigger = "kan ikke utelukke"
+section = "vurdering"
+
+[[templates]]
+id = "pseudo_ikke_utelukket_01"
+pattern = "{entity} er ikke utelukket."
+gold_context = "POSSIBLE_EXISTENCE"
+trigger = "ikke utelukket"
+section = "vurdering"
+
+[[templates]]
+id = "pseudo_ikke_bare_01"
+pattern = "Dette er ikke bare {entity}."
+gold_context = "AFFIRMED"
+trigger = "ikke bare"
+section = "vurdering"
+
+[[templates]]
+id = "pseudo_ingen_endring_i_01"
+pattern = "Det er ingen endring i {entity}."
+gold_context = "AFFIRMED"
+trigger = "ingen endring i"
+section = "sammenfatning"
+
+[[templates]]
+id = "pseudo_ingen_forverring_01"
+pattern = "Ingen forverring av {entity} siden sist."
+gold_context = "AFFIRMED"
+trigger = "Ingen forverring av"
+section = "sammenfatning"
+
+[[templates]]
+id = "pseudo_vet_ikke_01"
+pattern = "Pasienten vet ikke om {entity} foreligger."
+gold_context = "POSSIBLE_EXISTENCE"
+trigger = "vet ikke"
+section = "anamnese"
+
+[[templates]]
+id = "pseudo_ikke_vet_01"
+pattern = "Ikke vet vi sikkert om {entity} er tilstede."
+gold_context = "POSSIBLE_EXISTENCE"
+trigger = "ikke vet"
+section = "vurdering"
+
+# ──────────────────────────────────────────────
+# UNCERTAINTY — POSSIBLE_EXISTENCE
+# Source: medspacy-no SEEDS / Skeppstedt 2011 port
+# ──────────────────────────────────────────────
+
+[[templates]]
+id = "unc_mistanke_om_01"
+pattern = "Mistanke om {entity}."
+gold_context = "POSSIBLE_EXISTENCE"
+trigger = "Mistanke om"
+section = "vurdering"
+
+[[templates]]
+id = "unc_mistenkt_01"
+pattern = "Mistenkt {entity} på bakgrunn av klinikk."
+gold_context = "POSSIBLE_EXISTENCE"
+trigger = "Mistenkt"
+section = "vurdering"
+
+[[templates]]
+id = "unc_mulig_01"
+pattern = "Mulig {entity} — videre utredning anbefales."
+gold_context = "POSSIBLE_EXISTENCE"
+trigger = "Mulig"
+section = "vurdering"
+
+[[templates]]
+id = "unc_muligens_01"
+pattern = "Pasienten har muligens {entity}."
+gold_context = "POSSIBLE_EXISTENCE"
+trigger = "muligens"
+section = "vurdering"
+
+[[templates]]
+id = "unc_suspekt_01"
+pattern = "Suspekt {entity} ved røntgenundersøkelse."
+gold_context = "POSSIBLE_EXISTENCE"
+trigger = "Suspekt"
+section = "status_presens"
+
+[[templates]]
+id = "unc_sannsynlig_01"
+pattern = "Sannsynlig {entity} basert på symptombilde."
+gold_context = "POSSIBLE_EXISTENCE"
+trigger = "Sannsynlig"
+section = "vurdering"
+
+[[templates]]
+id = "unc_obs_mulig_01"
+pattern = "Obs mulig {entity} — følg opp."
+gold_context = "POSSIBLE_EXISTENCE"
+trigger = "Obs mulig"
+section = "anbefaling"
+
+[[templates]]
+id = "unc_kan_ikke_utelukkes_02"
+pattern = "{entity} kan ikke utelukkes basert på bildeframstilling."
+gold_context = "POSSIBLE_EXISTENCE"
+trigger = "kan ikke utelukkes"
+section = "vurdering"
+
+[[templates]]
+id = "unc_mistanke_om_02"
+pattern = "Det er mistanke om {entity} ved klinisk vurdering."
+gold_context = "POSSIBLE_EXISTENCE"
+trigger = "mistanke om"
+section = "vurdering"
+
+[[templates]]
+id = "unc_mulig_02"
+pattern = "Vi mistenker mulig {entity}."
+gold_context = "POSSIBLE_EXISTENCE"
+trigger = "mulig"
+section = "aktuelt"
+
+[[templates]]
+id = "unc_sporsmal_om_01"
+pattern = "Spørsmål om {entity} er avklart."
+gold_context = "POSSIBLE_EXISTENCE"
+trigger = "Spørsmål om"
+section = "vurdering"
+
+# ──────────────────────────────────────────────
+# CONJUNCTION SCOPE TRAPS — multi_span records
+# Source: medspacy-no SEEDS; ConText scope rules
+# ──────────────────────────────────────────────
+
+[[templates]]
+id = "conj_ikke_men_01"
+pattern = "Pasienten har ikke {entity}, men {entity2}."
+gold_context = "NEGATED_EXISTENCE"
+entity2_gold = "AFFIRMED"
+trigger = "ikke"
+section = "aktuelt"
+multi_span = true
+
+[[templates]]
+id = "conj_ikke_men_02"
+pattern = "Ikke {entity}, men derimot {entity2}."
+gold_context = "NEGATED_EXISTENCE"
+entity2_gold = "AFFIRMED"
+trigger = "Ikke"
+section = "vurdering"
+multi_span = true
+
+[[templates]]
+id = "conj_verken_eller_01"
+pattern = "Verken {entity} eller {entity2} er påvist."
+gold_context = "NEGATED_EXISTENCE"
+entity2_gold = "NEGATED_EXISTENCE"
+trigger = "Verken"
+section = "vurdering"
+multi_span = true
+
+[[templates]]
+id = "conj_hverken_eller_01"
+pattern = "Hverken {entity} eller {entity2} foreligger."
+gold_context = "NEGATED_EXISTENCE"
+entity2_gold = "NEGATED_EXISTENCE"
+trigger = "Hverken"
+section = "aktuelt"
+multi_span = true
+
+[[templates]]
+id = "conj_verken_eller_02"
+pattern = "Det er verken {entity} eller {entity2} ved undersøkelse."
+gold_context = "NEGATED_EXISTENCE"
+entity2_gold = "NEGATED_EXISTENCE"
+trigger = "verken"
+section = "status_presens"
+multi_span = true
+
+[[templates]]
+id = "conj_ikke_men_03"
+pattern = "Klinisk ikke {entity}, men {entity2} er tilstede."
+gold_context = "NEGATED_EXISTENCE"
+entity2_gold = "AFFIRMED"
+trigger = "ikke"
+section = "status_presens"
+multi_span = true
+
+# ──────────────────────────────────────────────
+# HYPOTHETICAL — HYPOTHETICAL
+# Source: medspacy-no SEEDS / ConText directions
+# ──────────────────────────────────────────────
+
+[[templates]]
+id = "hypo_hvis_01"
+pattern = "Hvis {entity} oppstår, kontakt lege."
+gold_context = "HYPOTHETICAL"
+trigger = "Hvis"
+section = "anbefaling"
+
+[[templates]]
+id = "hypo_dersom_01"
+pattern = "Dersom {entity} ikke bedres, re-innleggelse vurderes."
+gold_context = "HYPOTHETICAL"
+trigger = "Dersom"
+section = "anbefaling"
+
+[[templates]]
+id = "hypo_ved_behov_01"
+pattern = "Medisinering ved behov for {entity}."
+gold_context = "HYPOTHETICAL"
+trigger = "ved behov for"
+section = "behandling"
+
+[[templates]]
+id = "hypo_ved_forverring_01"
+pattern = "Ved forverring av {entity}, innlegg pasienten."
+gold_context = "HYPOTHETICAL"
+trigger = "Ved forverring av"
+section = "anbefaling"
+
+[[templates]]
+id = "hypo_hvis_02"
+pattern = "Pasienten informert om at {entity} kan oppstå."
+gold_context = "HYPOTHETICAL"
+trigger = "kan oppstå"
+section = "anbefaling"
+
+[[templates]]
+id = "hypo_dersom_02"
+pattern = "Dersom {entity} oppdages, startes behandling umiddelbart."
+gold_context = "HYPOTHETICAL"
+trigger = "Dersom"
+section = "behandling"
+
+[[templates]]
+id = "hypo_ved_01"
+pattern = "Ved {entity} gis oksygen og IV-tilgang."
+gold_context = "HYPOTHETICAL"
+trigger = "Ved"
+section = "behandling"
+
+[[templates]]
+id = "hypo_hvis_03"
+pattern = "Hvis pasienten utvikler {entity}, revurder diagnose."
+gold_context = "HYPOTHETICAL"
+trigger = "Hvis"
+section = "vurdering"
+
+[[templates]]
+id = "hypo_ved_behov_02"
+pattern = "Smertestillende ved behov, ved {entity}."
+gold_context = "HYPOTHETICAL"
+trigger = "ved"
+section = "medikamenter"
+
+[[templates]]
+id = "hypo_dersom_03"
+pattern = "Dersom {entity} vedvarer, MR-undersøkelse anbefales."
+gold_context = "HYPOTHETICAL"
+trigger = "Dersom"
+section = "anbefaling"
+
+[[templates]]
+id = "hypo_hvis_04"
+pattern = "Hvis lab viser {entity}, kontakt bakvakt."
+gold_context = "HYPOTHETICAL"
+trigger = "Hvis"
+section = "anbefaling"
+
+[[templates]]
+id = "hypo_ved_behov_03"
+pattern = "{entity} behandles ved behov."
+gold_context = "HYPOTHETICAL"
+trigger = "ved behov"
+section = "behandling"
+
+[[templates]]
+id = "hypo_dersom_04"
+pattern = "Dersom ny episode med {entity}, eksplosiv utredning."
+gold_context = "HYPOTHETICAL"
+trigger = "Dersom"
+section = "anbefaling"
+
+[[templates]]
+id = "hypo_ved_03"
+pattern = "Ved tegn til {entity}, kontakt sykehus."
+gold_context = "HYPOTHETICAL"
+trigger = "Ved tegn til"
+section = "anbefaling"
+
+[[templates]]
+id = "hypo_hvis_05"
+pattern = "Planlegger CT ved mistanke om {entity}."
+gold_context = "HYPOTHETICAL"
+trigger = "ved mistanke om"
+section = "behandling"
+
+[[templates]]
+id = "hypo_ved_komplikasjon_01"
+pattern = "Ved komplikasjon i form av {entity}, innleggelse."
+gold_context = "HYPOTHETICAL"
+trigger = "Ved komplikasjon"
+section = "anbefaling"
+
+# ──────────────────────────────────────────────
+# HISTORICAL — HISTORICAL
+# Source: medspacy-no SEEDS / ConText historical cues
+# ──────────────────────────────────────────────
+
+[[templates]]
+id = "hist_tidligere_01"
+pattern = "Tidligere {entity} behandlet med antibiotika."
+gold_context = "HISTORICAL"
+trigger = "Tidligere"
+section = "tidligere_sykdommer"
+
+[[templates]]
+id = "hist_gjennomgikk_01"
+pattern = "Pasienten gjennomgikk {entity} for to år siden."
+gold_context = "HISTORICAL"
+trigger = "gjennomgikk"
+section = "tidligere_sykdommer"
+
+[[templates]]
+id = "hist_anamnestisk_01"
+pattern = "Anamnestisk {entity} i 2019."
+gold_context = "HISTORICAL"
+trigger = "Anamnestisk"
+section = "anamnese"
+
+[[templates]]
+id = "hist_i_anamnesen_01"
+pattern = "{entity} i anamnesen, godt behandlet."
+gold_context = "HISTORICAL"
+trigger = "i anamnesen"
+section = "anamnese"
+
+[[templates]]
+id = "hist_for_n_ar_siden_01"
+pattern = "Hadde {entity} for tre år siden."
+gold_context = "HISTORICAL"
+trigger = "for tre år siden"
+section = "tidligere_sykdommer"
+
+[[templates]]
+id = "hist_for_n_ar_siden_02"
+pattern = "{entity} diagnostisert for fem år siden, nå i remisjon."
+gold_context = "HISTORICAL"
+trigger = "diagnostisert for fem år siden"
+section = "tidligere_sykdommer"
+
+[[templates]]
+id = "hist_tidligere_02"
+pattern = "Hatt {entity} tidligere, fullt restituert."
+gold_context = "HISTORICAL"
+trigger = "Hatt"
+section = "tidligere_sykdommer"
+
+[[templates]]
+id = "hist_anamnestisk_02"
+pattern = "Anamnestisk kjent med {entity}."
+gold_context = "HISTORICAL"
+trigger = "Anamnestisk kjent med"
+section = "anamnese"
+
+[[templates]]
+id = "hist_gjennomgikk_02"
+pattern = "Gjennomgikk {entity} i fjor."
+gold_context = "HISTORICAL"
+trigger = "Gjennomgikk"
+section = "tidligere_sykdommer"
+
+[[templates]]
+id = "hist_for_n_ar_siden_03"
+pattern = "Behandlet for {entity} for to uker siden."
+gold_context = "HISTORICAL"
+trigger = "for to uker siden"
+section = "behandling"
+
+[[templates]]
+id = "hist_tidligere_03"
+pattern = "Tidligere operert for {entity}."
+gold_context = "HISTORICAL"
+trigger = "Tidligere operert for"
+section = "tidligere_sykdommer"
+
+[[templates]]
+id = "hist_for_n_ar_siden_04"
+pattern = "Hatt {entity} for ett år siden — se epikrise."
+gold_context = "HISTORICAL"
+trigger = "for ett år siden"
+section = "anamnese"
+
+[[templates]]
+id = "hist_anamnestisk_03"
+pattern = "Anamnestisk episode med {entity} i ungdomsårene."
+gold_context = "HISTORICAL"
+trigger = "Anamnestisk episode med"
+section = "anamnese"
+
+[[templates]]
+id = "hist_tidligere_04"
+pattern = "Pasienten har tidligere vært innlagt med {entity}."
+gold_context = "HISTORICAL"
+trigger = "tidligere vært innlagt med"
+section = "tidligere_sykdommer"
+
+[[templates]]
+id = "hist_for_n_mnd_siden_01"
+pattern = "{entity} for seks måneder siden, ukomplisert forløp."
+gold_context = "HISTORICAL"
+trigger = "for seks måneder siden"
+section = "tidligere_sykdommer"
+
+[[templates]]
+id = "hist_i_anamnesen_02"
+pattern = "Kjent {entity} i anamnesen fra barndommen."
+gold_context = "HISTORICAL"
+trigger = "i anamnesen"
+section = "anamnese"
+
+# ──────────────────────────────────────────────
+# FAMILY — FAMILY
+# Source: medspacy-no SEEDS / NorSynthClinical family-history framing
+# ──────────────────────────────────────────────
+
+[[templates]]
+id = "fam_mor_har_01"
+pattern = "Mor har {entity}."
+gold_context = "FAMILY"
+trigger = "Mor har"
+section = "familie"
+
+[[templates]]
+id = "fam_far_har_01"
+pattern = "Far har {entity}."
+gold_context = "FAMILY"
+trigger = "Far har"
+section = "familie"
+
+[[templates]]
+id = "fam_soksen_har_01"
+pattern = "Søsken har {entity}."
+gold_context = "FAMILY"
+trigger = "Søsken har"
+section = "familie"
+
+[[templates]]
+id = "fam_familiaer_forekomst_01"
+pattern = "Familiær forekomst av {entity}."
+gold_context = "FAMILY"
+trigger = "Familiær forekomst av"
+section = "familie"
+
+[[templates]]
+id = "fam_hereditet_for_01"
+pattern = "Hereditet for {entity} hos far og farfar."
+gold_context = "FAMILY"
+trigger = "Hereditet for"
+section = "familie"
+
+[[templates]]
+id = "fam_mor_kjent_01"
+pattern = "Mor kjent med {entity}."
+gold_context = "FAMILY"
+trigger = "Mor kjent med"
+section = "familie"
+
+[[templates]]
+id = "fam_besteforeldre_01"
+pattern = "Begge besteforeldre på morssiden hadde {entity}."
+gold_context = "FAMILY"
+trigger = "hadde"
+section = "familie"
+
+[[templates]]
+id = "fam_far_02"
+pattern = "Paters {entity} i familien."
+gold_context = "FAMILY"
+trigger = "Paters"
+section = "familie"
+
+[[templates]]
+id = "fam_bror_01"
+pattern = "Bror diagnostisert med {entity}."
+gold_context = "FAMILY"
+trigger = "Bror diagnostisert med"
+section = "familie"
+
+[[templates]]
+id = "fam_sister_01"
+pattern = "Søster har hatt {entity}."
+gold_context = "FAMILY"
+trigger = "Søster har hatt"
+section = "familie"
+
+[[templates]]
+id = "fam_hereditet_02"
+pattern = "Positiv hereditet for {entity} på begge sider."
+gold_context = "FAMILY"
+trigger = "Positiv hereditet for"
+section = "familie"
+
+[[templates]]
+id = "fam_familiaer_02"
+pattern = "Familiær opphopning av {entity}."
+gold_context = "FAMILY"
+trigger = "Familiær opphopning av"
+section = "familie"
+
+[[templates]]
+id = "fam_mor_far_01"
+pattern = "Både mor og far har {entity}."
+gold_context = "FAMILY"
+trigger = "Både mor og far har"
+section = "familie"
+
+[[templates]]
+id = "fam_foreldre_01"
+pattern = "Foreldre med {entity} — genetisk utredning pågår."
+gold_context = "FAMILY"
+trigger = "Foreldre med"
+section = "familie"
+
+[[templates]]
+id = "fam_onkel_01"
+pattern = "Onkel fra morssiden hadde {entity}."
+gold_context = "FAMILY"
+trigger = "hadde"
+section = "familie"
+
+[[templates]]
+id = "fam_hereditet_03"
+pattern = "Kjent hereditet for {entity}."
+gold_context = "FAMILY"
+trigger = "Kjent hereditet for"
+section = "familie"
+
+[[templates]]
+id = "fam_familiaer_03"
+pattern = "Familiær disposisjon for {entity}."
+gold_context = "FAMILY"
+trigger = "Familiær disposisjon for"
+section = "familie"
+
+[[templates]]
+id = "fam_far_mor_01"
+pattern = "Far og mor begge med {entity}."
+gold_context = "FAMILY"
+trigger = "Far og mor begge med"
+section = "familie"
+
+[[templates]]
+id = "fam_tante_01"
+pattern = "Tante behandlet for {entity} på sykehus."
+gold_context = "FAMILY"
+trigger = "Tante behandlet for"
+section = "familie"
+
+[[templates]]
+id = "fam_slekt_01"
+pattern = "Slektshistorie positivt for {entity}."
+gold_context = "FAMILY"
+trigger = "positivt for"
+section = "familie"
+
+[[templates]]
+id = "fam_farmor_01"
+pattern = "Farmor hadde {entity} i eldre alder."
+gold_context = "FAMILY"
+trigger = "hadde"
+section = "familie"
+
+[[templates]]
+id = "fam_mormor_01"
+pattern = "Mormor kjent med {entity} i sykehjemmet."
+gold_context = "FAMILY"
+trigger = "kjent med"
+section = "familie"
+
+[[templates]]
+id = "fam_broder_01"
+pattern = "Halvbror rammet av {entity}."
+gold_context = "FAMILY"
+trigger = "rammet av"
+section = "familie"
+
+[[templates]]
+id = "fam_to_soskjen_01"
+pattern = "To søsken begge diagnostisert med {entity}."
+gold_context = "FAMILY"
+trigger = "diagnostisert med"
+section = "familie"
+
+[[templates]]
+id = "fam_far_03"
+pattern = "Far innlagt gjentatte ganger for {entity}."
+gold_context = "FAMILY"
+trigger = "Far innlagt"
+section = "familie"
+
+[[templates]]
+id = "fam_mor_03"
+pattern = "Mor behandlet for {entity} de siste ti år."
+gold_context = "FAMILY"
+trigger = "Mor behandlet for"
+section = "familie"
+
+# ──────────────────────────────────────────────
+# ABBREVIATION-BEARING SENTENCES
+# Source: medspacy-no SEEDS §ABBREVIATION-SOURCES; plain clinical usage
+# Tests that abbreviations (ca., pas., bt., temp., etc.) don't break offsets
+# ──────────────────────────────────────────────
+
+[[templates]]
+id = "abbrev_ca_01"
+pattern = "Ca. 3 dager med {entity} rapportert av pas."
+gold_context = "AFFIRMED"
+trigger = "Ca."
+section = "aktuelt"
+
+[[templates]]
+id = "abbrev_pas_01"
+pattern = "Pas. innlagt med {entity} pga. forverring."
+gold_context = "AFFIRMED"
+trigger = "Pas."
+section = "innkomstgrunn"
+
+[[templates]]
+id = "abbrev_temp_01"
+pattern = "Temp. 38.5°C, {entity} mistenkt."
+gold_context = "POSSIBLE_EXISTENCE"
+trigger = "mistenkt"
+section = "status_presens"
+
+[[templates]]
+id = "abbrev_bt_01"
+pattern = "BT 150/95, evt. {entity} vurderes."
+gold_context = "HYPOTHETICAL"
+trigger = "evt."
+section = "status_presens"
+
+[[templates]]
+id = "abbrev_evt_01"
+pattern = "Evt. {entity} ved komplikasjoner."
+gold_context = "HYPOTHETICAL"
+trigger = "Evt."
+section = "anbefaling"
+
+[[templates]]
+id = "abbrev_pga_01"
+pattern = "Innlagt pga. {entity} og forverring av allmenntilstand."
+gold_context = "AFFIRMED"
+trigger = "pga."
+section = "innkomstgrunn"
+
+[[templates]]
+id = "abbrev_tbl_01"
+pattern = "Tbl. Paracetamol 1 g x 4, ved {entity}."
+gold_context = "HYPOTHETICAL"
+trigger = "ved"
+section = "medikamenter"
+
+[[templates]]
+id = "abbrev_iv_01"
+pattern = "I.v. antibiotika ved {entity}."
+gold_context = "HYPOTHETICAL"
+trigger = "ved"
+section = "behandling"
+
+[[templates]]
+id = "abbrev_ua_mid_01"
+pattern = "Lunge u.a., ingen {entity} påvist."
+gold_context = "NEGATED_EXISTENCE"
+trigger = "ingen"
+section = "status_presens"
+
+[[templates]]
+id = "abbrev_ca_02"
+pattern = "Symptomer i ca. 5 dager, trolig {entity}."
+gold_context = "POSSIBLE_EXISTENCE"
+trigger = "trolig"
+section = "aktuelt"
+
+[[templates]]
+id = "abbrev_dvs_01"
+pattern = "Klinisk bedring, dvs. {entity} er under kontroll."
+gold_context = "AFFIRMED"
+trigger = "dvs."
+section = "vurdering"
+
+[[templates]]
+id = "abbrev_temp_02"
+pattern = "Temp. normal, {entity} usannsynlig."
+gold_context = "NEGATED_EXISTENCE"
+trigger = "usannsynlig"
+section = "vurdering"
+
+[[templates]]
+id = "abbrev_pas_02"
+pattern = "Pas. benekter {entity} på direkte spørsmål."
+gold_context = "NEGATED_EXISTENCE"
+trigger = "benekter"
+section = "anamnese"
+
+# ──────────────────────────────────────────────
+# AFFIRMED CONTROLS — AFFIRMED
+# Source: plain clinical usage (baseline / positive examples)
+# ──────────────────────────────────────────────
+
+[[templates]]
+id = "affirmed_01"
+pattern = "Pasienten har {entity}."
+gold_context = "AFFIRMED"
+trigger = "har"
+section = "aktuelt"
+
+[[templates]]
+id = "affirmed_02"
+pattern = "{entity} diagnostisert i dag."
+gold_context = "AFFIRMED"
+trigger = "diagnostisert"
+section = "diagnoser"
+
+[[templates]]
+id = "affirmed_03"
+pattern = "Funnet {entity} ved undersøkelse."
+gold_context = "AFFIRMED"
+trigger = "Funnet"
+section = "status_presens"
+
+[[templates]]
+id = "affirmed_04"
+pattern = "Bekreftet {entity} på bakgrunn av blodprøver."
+gold_context = "AFFIRMED"
+trigger = "Bekreftet"
+section = "vurdering"
+
+[[templates]]
+id = "affirmed_05"
+pattern = "Pasienten lider av {entity}."
+gold_context = "AFFIRMED"
+trigger = "lider av"
+section = "sammenfatning"
+
+[[templates]]
+id = "affirmed_06"
+pattern = "Klinisk funn forenlig med {entity}."
+gold_context = "AFFIRMED"
+trigger = "forenlig med"
+section = "vurdering"
+
+[[templates]]
+id = "affirmed_07"
+pattern = "Behandler {entity} med standardregime."
+gold_context = "AFFIRMED"
+trigger = "Behandler"
+section = "behandling"
+
+# ──────────────────────────────────────────────
+# SECTION-FRAMED VARIANTS — 15 heading families
+# Each section uses 3 casing/colon variants: "Heading:", "HEADING", "Heading"
+# Source: medspacy-no section_patterns; Norwegian EPJ conventions
+# ──────────────────────────────────────────────
+
+# Innkomstgrunn
+[[templates]]
+id = "sec_innkomstgrunn_colon_01"
+pattern = "Innkomstgrunn: {entity} med akutt debut."
+gold_context = "AFFIRMED"
+trigger = "Innkomstgrunn:"
+section = "innkomstgrunn"
+
+[[templates]]
+id = "sec_innkomstgrunn_upper_01"
+pattern = "INNKOMSTGRUNN\nPasienten innlagt med {entity}."
+gold_context = "AFFIRMED"
+trigger = "INNKOMSTGRUNN"
+section = "innkomstgrunn"
+
+[[templates]]
+id = "sec_innkomstgrunn_plain_01"
+pattern = "Innkomstgrunn\nHenvist pga {entity}."
+gold_context = "AFFIRMED"
+trigger = "Innkomstgrunn"
+section = "innkomstgrunn"
+
+# Tidligere sykdommer
+[[templates]]
+id = "sec_tidligere_sykdommer_colon_01"
+pattern = "Tidligere sykdommer: {entity} i 2015."
+gold_context = "HISTORICAL"
+trigger = "Tidligere sykdommer:"
+section = "tidligere_sykdommer"
+
+[[templates]]
+id = "sec_tidligere_sykdommer_upper_01"
+pattern = "TIDLIGERE SYKDOMMER\nHadde {entity} for to år siden."
+gold_context = "HISTORICAL"
+trigger = "TIDLIGERE SYKDOMMER"
+section = "tidligere_sykdommer"
+
+[[templates]]
+id = "sec_tidligere_sykdommer_plain_01"
+pattern = "Tidligere sykdommer\nKjent {entity} fra 2018."
+gold_context = "HISTORICAL"
+trigger = "Tidligere sykdommer"
+section = "tidligere_sykdommer"
+
+# Familie
+[[templates]]
+id = "sec_familie_colon_01"
+pattern = "Familie: Mor har {entity}."
+gold_context = "FAMILY"
+trigger = "Familie:"
+section = "familie"
+
+[[templates]]
+id = "sec_familie_upper_01"
+pattern = "FAMILIE\nFar har {entity}."
+gold_context = "FAMILY"
+trigger = "FAMILIE"
+section = "familie"
+
+[[templates]]
+id = "sec_familie_plain_01"
+pattern = "Familie\nSøsken har {entity}."
+gold_context = "FAMILY"
+trigger = "Familie"
+section = "familie"
+
+# Sosialt
+[[templates]]
+id = "sec_sosialt_colon_01"
+pattern = "Sosialt: Bor alene, ingen {entity} kjent."
+gold_context = "NEGATED_EXISTENCE"
+trigger = "ingen"
+section = "sosialt"
+
+[[templates]]
+id = "sec_sosialt_upper_01"
+pattern = "SOSIALT\nArbeidsledig, ikke {entity}."
+gold_context = "NEGATED_EXISTENCE"
+trigger = "ikke"
+section = "sosialt"
+
+[[templates]]
+id = "sec_sosialt_plain_01"
+pattern = "Sosialt\nGift, frisk ellers, mulig {entity}."
+gold_context = "POSSIBLE_EXISTENCE"
+trigger = "mulig"
+section = "sosialt"
+
+# Aktuelt
+[[templates]]
+id = "sec_aktuelt_colon_01"
+pattern = "Aktuelt: Pasienten har {entity} siden i går."
+gold_context = "AFFIRMED"
+trigger = "Aktuelt:"
+section = "aktuelt"
+
+[[templates]]
+id = "sec_aktuelt_upper_01"
+pattern = "AKTUELT\nUtiviklet {entity} i løpet av natten."
+gold_context = "AFFIRMED"
+trigger = "AKTUELT"
+section = "aktuelt"
+
+[[templates]]
+id = "sec_aktuelt_plain_01"
+pattern = "Aktuelt\nKlagde på {entity} i tre dager."
+gold_context = "AFFIRMED"
+trigger = "Aktuelt"
+section = "aktuelt"
+
+# Naturlige funksjoner
+[[templates]]
+id = "sec_naturlige_colon_01"
+pattern = "Naturlige funksjoner: Ingen {entity} rapportert."
+gold_context = "NEGATED_EXISTENCE"
+trigger = "Ingen"
+section = "naturlige_funksjoner"
+
+[[templates]]
+id = "sec_naturlige_upper_01"
+pattern = "NATURLIGE FUNKSJONER\nNormale, uten {entity}."
+gold_context = "NEGATED_EXISTENCE"
+trigger = "uten"
+section = "naturlige_funksjoner"
+
+[[templates]]
+id = "sec_naturlige_plain_01"
+pattern = "Naturlige funksjoner\nNoe forstoppelse, ikke {entity}."
+gold_context = "NEGATED_EXISTENCE"
+trigger = "ikke"
+section = "naturlige_funksjoner"
+
+# Allergier
+[[templates]]
+id = "sec_allergier_colon_01"
+pattern = "Allergier: Ingen kjente allergier, ikke {entity}."
+gold_context = "NEGATED_EXISTENCE"
+trigger = "ikke"
+section = "allergier"
+
+[[templates]]
+id = "sec_allergier_upper_01"
+pattern = "ALLERGIER\nIngen {entity} registrert."
+gold_context = "NEGATED_EXISTENCE"
+trigger = "Ingen"
+section = "allergier"
+
+[[templates]]
+id = "sec_allergier_plain_01"
+pattern = "Allergier\nMistanke om {entity} — utredning pågår."
+gold_context = "POSSIBLE_EXISTENCE"
+trigger = "Mistanke om"
+section = "allergier"
+
+# Cave
+[[templates]]
+id = "sec_cave_colon_01"
+pattern = "Cave: {entity} — se notat."
+gold_context = "AFFIRMED"
+trigger = "Cave:"
+section = "cave"
+
+[[templates]]
+id = "sec_cave_upper_01"
+pattern = "CAVE\n{entity} notert som cave."
+gold_context = "AFFIRMED"
+trigger = "CAVE"
+section = "cave"
+
+[[templates]]
+id = "sec_cave_plain_01"
+pattern = "Cave\nIngen {entity} i cave-listen."
+gold_context = "NEGATED_EXISTENCE"
+trigger = "Ingen"
+section = "cave"
+
+# Medikamenter
+[[templates]]
+id = "sec_medikamenter_colon_01"
+pattern = "Medikamenter: Ingen {entity} i bruk."
+gold_context = "NEGATED_EXISTENCE"
+trigger = "Ingen"
+section = "medikamenter"
+
+[[templates]]
+id = "sec_medikamenter_upper_01"
+pattern = "MEDIKAMENTER\nBruk av midler mot {entity}."
+gold_context = "AFFIRMED"
+trigger = "mot"
+section = "medikamenter"
+
+[[templates]]
+id = "sec_medikamenter_plain_01"
+pattern = "Medikamenter\nParacetamol for {entity}."
+gold_context = "AFFIRMED"
+trigger = "for"
+section = "medikamenter"
+
+# Status presens
+[[templates]]
+id = "sec_status_colon_01"
+pattern = "Status presens: Ingen {entity} ved auskultasjon."
+gold_context = "NEGATED_EXISTENCE"
+trigger = "Ingen"
+section = "status_presens"
+
+[[templates]]
+id = "sec_status_upper_01"
+pattern = "STATUS PRESENS\nFri for {entity}."
+gold_context = "NEGATED_EXISTENCE"
+trigger = "Fri for"
+section = "status_presens"
+
+[[templates]]
+id = "sec_status_plain_01"
+pattern = "Status presens\nPåvist {entity} ved klinisk undersøkelse."
+gold_context = "AFFIRMED"
+trigger = "Påvist"
+section = "status_presens"
+
+# Vurdering
+[[templates]]
+id = "sec_vurdering_colon_01"
+pattern = "Vurdering: Sannsynlig {entity}."
+gold_context = "POSSIBLE_EXISTENCE"
+trigger = "Sannsynlig"
+section = "vurdering"
+
+[[templates]]
+id = "sec_vurdering_upper_01"
+pattern = "VURDERING\n{entity} kan ikke utelukkes."
+gold_context = "POSSIBLE_EXISTENCE"
+trigger = "kan ikke utelukkes"
+section = "vurdering"
+
+[[templates]]
+id = "sec_vurdering_plain_01"
+pattern = "Vurdering\nIkke {entity} — se differensialdiagnose."
+gold_context = "NEGATED_EXISTENCE"
+trigger = "Ikke"
+section = "vurdering"
+
+# Sammenfatning
+[[templates]]
+id = "sec_sammenfatning_colon_01"
+pattern = "Sammenfatning: Pasienten har {entity}."
+gold_context = "AFFIRMED"
+trigger = "Sammenfatning:"
+section = "sammenfatning"
+
+[[templates]]
+id = "sec_sammenfatning_upper_01"
+pattern = "SAMMENFATNING\nIngen {entity} påvist."
+gold_context = "NEGATED_EXISTENCE"
+trigger = "Ingen"
+section = "sammenfatning"
+
+[[templates]]
+id = "sec_sammenfatning_plain_01"
+pattern = "Sammenfatning\nKlinisk bedring — {entity} behandlet."
+gold_context = "AFFIRMED"
+trigger = "Sammenfatning"
+section = "sammenfatning"
+
+# Diagnoser
+[[templates]]
+id = "sec_diagnoser_colon_01"
+pattern = "Diagnoser: {entity} bekreftet."
+gold_context = "AFFIRMED"
+trigger = "Diagnoser:"
+section = "diagnoser"
+
+[[templates]]
+id = "sec_diagnoser_upper_01"
+pattern = "DIAGNOSER\nIngen {entity} klar diagnose."
+gold_context = "NEGATED_EXISTENCE"
+trigger = "Ingen"
+section = "diagnoser"
+
+[[templates]]
+id = "sec_diagnoser_plain_01"
+pattern = "Diagnoser\nMistanke om {entity} — avklar videre."
+gold_context = "POSSIBLE_EXISTENCE"
+trigger = "Mistanke om"
+section = "diagnoser"
+
+# Behandling
+[[templates]]
+id = "sec_behandling_colon_01"
+pattern = "Behandling: Antibiotika for {entity}."
+gold_context = "AFFIRMED"
+trigger = "Behandling:"
+section = "behandling"
+
+[[templates]]
+id = "sec_behandling_upper_01"
+pattern = "BEHANDLING\nIkke indisert ved {entity}."
+gold_context = "NEGATED_EXISTENCE"
+trigger = "Ikke indisert ved"
+section = "behandling"
+
+[[templates]]
+id = "sec_behandling_plain_01"
+pattern = "Behandling\nPlanlegger kirurgi for {entity}."
+gold_context = "AFFIRMED"
+trigger = "for"
+section = "behandling"
+
+# Anbefaling
+[[templates]]
+id = "sec_anbefaling_colon_01"
+pattern = "Anbefaling: Dersom {entity} forverres, kontakt lege."
+gold_context = "HYPOTHETICAL"
+trigger = "Dersom"
+section = "anbefaling"
+
+[[templates]]
+id = "sec_anbefaling_upper_01"
+pattern = "ANBEFALING\nObs mulig {entity} ved neste kontroll."
+gold_context = "POSSIBLE_EXISTENCE"
+trigger = "Obs mulig"
+section = "anbefaling"
+
+[[templates]]
+id = "sec_anbefaling_plain_01"
+pattern = "Anbefaling\nVidere utredning av {entity} anbefalt."
+gold_context = "AFFIRMED"
+trigger = "Anbefaling"
+section = "anbefaling"
+
+# ──────────────────────────────────────────────
+# ADDITIONAL NEGATED_EXISTENCE (to reach ≥60 templates)
+# ──────────────────────────────────────────────
+
+[[templates]]
+id = "pre_neg_ikke_04"
+pattern = "Røntgen viser ikke {entity}."
+gold_context = "NEGATED_EXISTENCE"
+trigger = "ikke"
+section = "status_presens"
+
+[[templates]]
+id = "pre_neg_ingen_03"
+pattern = "Ingen funn forenlig med {entity}."
+gold_context = "NEGATED_EXISTENCE"
+trigger = "Ingen funn"
+section = "vurdering"
+
+[[templates]]
+id = "post_neg_negativt_02"
+pattern = "Dyrkningssvar negativt for {entity}."
+gold_context = "NEGATED_EXISTENCE"
+trigger = "negativt for"
+section = "status_presens"
+
+[[templates]]
+id = "pre_neg_uten_03"
+pattern = "Utskrevet uten tegn til {entity}."
+gold_context = "NEGATED_EXISTENCE"
+trigger = "uten tegn til"
+section = "anbefaling"
+
+# ──────────────────────────────────────────────
+# ADDITIONAL POSSIBLE_EXISTENCE (to reach ≥30 templates)
+# ──────────────────────────────────────────────
+
+[[templates]]
+id = "unc_trolig_01"
+pattern = "Trolig {entity} basert på klinikk."
+gold_context = "POSSIBLE_EXISTENCE"
+trigger = "Trolig"
+section = "vurdering"
+
+[[templates]]
+id = "unc_mulig_03"
+pattern = "Det er mulig at {entity} foreligger."
+gold_context = "POSSIBLE_EXISTENCE"
+trigger = "mulig at"
+section = "vurdering"
+
+[[templates]]
+id = "unc_suspekt_02"
+pattern = "Klinisk suspekt {entity}."
+gold_context = "POSSIBLE_EXISTENCE"
+trigger = "suspekt"
+section = "vurdering"
+
+[[templates]]
+id = "unc_kan_muligens_01"
+pattern = "{entity} kan muligens påvises ved videre utredning."
+gold_context = "POSSIBLE_EXISTENCE"
+trigger = "kan muligens"
+section = "vurdering"
+
+[[templates]]
+id = "unc_mistanke_03"
+pattern = "Klinisk mistanke om {entity} uten sikker diagnose."
+gold_context = "POSSIBLE_EXISTENCE"
+trigger = "mistanke om"
+section = "aktuelt"
+
+[[templates]]
+id = "unc_mulig_04"
+pattern = "Observasjon for mulig {entity}."
+gold_context = "POSSIBLE_EXISTENCE"
+trigger = "mulig"
+section = "aktuelt"
+
+[[templates]]
+id = "unc_sporsmal_02"
+pattern = "Uklart om {entity} er aktuelt."
+gold_context = "POSSIBLE_EXISTENCE"
+trigger = "Uklart om"
+section = "vurdering"
+
+[[templates]]
+id = "unc_sannsynlig_02"
+pattern = "Det er sannsynlig at {entity} bidrar til symptomene."
+gold_context = "POSSIBLE_EXISTENCE"
+trigger = "sannsynlig at"
+section = "vurdering"

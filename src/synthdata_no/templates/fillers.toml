@@ -1,0 +1,39 @@
+# fillers.toml — neutral bokmål condition/symptom fillers for template slots.
+#
+# Source: plain Norwegian medical vocabulary, no licensing constraints.
+# Each filler is a standalone noun phrase usable as a clinical entity name.
+# Includes æøå-bearing terms deliberately to exercise char-offset tests.
+
+[fillers]
+conditions = [
+    "pneumoni",
+    "feber",
+    "hoste",
+    "brystsmerter",
+    "dyspné",
+    "ødem",
+    "hodepine",
+    "svimmelhet",
+    "kvalme",
+    "utslett",
+    "tretthet",
+    "infeksjon",
+    "anemi",
+    "hypertensjon",
+    "diabetes",
+    "astma",
+    "bronkitt",
+    "pleuritt",
+    "perikarditt",
+    "endokarditt",
+    "meningitt",
+    "sepsis",
+    "abscess",
+    "trombose",
+    "embolisme",
+    "ødemer",
+    "arytmi",
+    "angina",
+    "ischemi",
+    "infarkt",
+]
