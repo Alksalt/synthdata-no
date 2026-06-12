@@ -1135,6 +1135,7 @@ name = "synthdata-no"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [
+    { name = "click" },
     { name = "defusedxml" },
     { name = "faker" },
     { name = "fhir-resources" },
@@ -1147,7 +1148,6 @@ dependencies = [
 
 [package.dev-dependencies]
 dev = [
-    { name = "click" },
     { name = "pytest" },
     { name = "pytest-cov" },
     { name = "spacy" },
@@ -1155,6 +1155,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
+    { name = "click", specifier = ">=8.1" },
     { name = "defusedxml", specifier = ">=0.7.1" },
     { name = "faker", specifier = ">=25.0" },
     { name = "fhir-resources", specifier = ">=8" },
@@ -1167,7 +1168,6 @@ requires-dist = [
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "click", specifier = ">=8.4.1" },
     { name = "pytest", specifier = ">=8.2" },
     { name = "pytest-cov", specifier = ">=5.0" },
     { name = "spacy", specifier = ">=3.8.14" },
