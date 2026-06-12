@@ -181,13 +181,25 @@ def main() -> None:
         file=sys.stderr,
     )
 
-    # Verification: all kommune codes must be in KLASS set
+    # Verification: fetched set must be a superset of KLASS set (N14)
+    # A partial fetch (e.g. SSB returning fewer codes than requested) would
+    # silently truncate the snapshot — abort hard if any KLASS code is missing.
     klass_set = set(klass_codes)
     fetched_komunner = set(df["kommune"].unique())
+    missing_from_fetch = klass_set - fetched_komunner
+    if missing_from_fetch:
+        missing_sorted = sorted(missing_from_fetch)
+        raise RuntimeError(
+            f"ABORT: fetched kommune set does not cover all {len(klass_codes)} KLASS codes. "
+            f"{len(missing_from_fetch)} KLASS codes missing from SSB response: "
+            f"{missing_sorted[:20]}{'...' if len(missing_sorted) > 20 else ''}. "
+            "Do not write a partial snapshot — fix the fetch query or the KLASS snapshot."
+        )
     not_in_klass = fetched_komunner - klass_set
     if not_in_klass:
         print(
-            f"WARNING: {len(not_in_klass)} fetched codes not in KLASS: {sorted(not_in_klass)[:5]}",
+            f"WARNING: {len(not_in_klass)} fetched codes not in KLASS (historical/aggregate): "
+            f"{sorted(not_in_klass)[:5]}",
             file=sys.stderr,
         )
     overlap_pct = len(fetched_komunner & klass_set) / len(klass_set) * 100
