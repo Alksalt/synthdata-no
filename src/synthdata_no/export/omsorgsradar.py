@@ -40,7 +40,7 @@ import numpy as np
 import pandas as pd
 
 from synthdata_no.ids import synthetic_fnr, is_synthetic_fnr
-from synthdata_no.tabular import generate_table, _DEFAULT_CPT_TJENESTE_BRUK
+from synthdata_no.tabular import generate_table, _DEFAULT_CPT_TJENESTE_BRUK, _load_snapshot
 
 # ---------------------------------------------------------------------------
 # Diabetes CPT — mapped onto the brfss-demo "diabetes" column (0/1)
@@ -54,15 +54,33 @@ _DIABETES_CPT = {
 }
 
 
+def _top_n_kommune_codes(n: int) -> list[str]:
+    """Return the N most-populous kommune codes from the SSB snapshot.
+
+    Population rank is determined by total count across all age/sex cells.
+    Returns a list of 4-digit kommune codes sorted by descending population.
+    """
+    snap = _load_snapshot()
+    totals = snap.groupby("kommune")["count"].sum().sort_values(ascending=False)
+    return list(totals.head(n).index)
+
+
 def write_brfss_shaped_fixture(
     out_path: Union[str, Path],
     seed: int = 42,
+    top_n_kommuner: int = 12,
 ) -> pd.DataFrame:
     """Emit a brfss-demo-shaped fixture CSV to out_path.
 
     Args:
         out_path: Destination CSV path. Parent directory is created if missing.
         seed: Integer seed (default 42). One seed → byte-identical output.
+        top_n_kommuner: Restrict kommune sampling to the N most-populous kommuner
+            from the snapshot (default 12). Weights are renormalized within this
+            subset. Setting this avoids the 91% suppression problem that occurs
+            when 600 rows are spread across all 358 kommuner (k=10 anonymization
+            classes survive only for Oslo). Default 12 is chosen so k=10 classes
+            survive across several kommuner in the omsorgsradar pipeline demo.
 
     Returns:
         The generated DataFrame (600 rows).
@@ -81,7 +99,10 @@ def write_brfss_shaped_fixture(
         - All remaining rows: «rutinekontroll»
     """
     N = 600
+    # Restrict to top_n_kommuner most-populous for k-anonymization viability
+    top_codes = _top_n_kommune_codes(top_n_kommuner)
     config = {
+        "kommune_subset": top_codes,
         "columns": {
             "diabetes": {
                 "type": "cpt",
