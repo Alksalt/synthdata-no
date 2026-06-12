@@ -48,6 +48,7 @@ from fhir.resources.R4B.patient import Patient
 
 from synthdata_no.codes import ATCEntry, ICD10Entry, LOINCEntry
 from synthdata_no.ids import is_synthetic_fnr
+from synthdata_no.kommuner import kommune_name
 from synthdata_no.persons import Person
 
 # ---------------------------------------------------------------------------
@@ -147,7 +148,9 @@ def build_patient(person: Person, *, rng: np.random.Generator) -> tuple[Patient,
             {
                 "line": [person.address],
                 "postalCode": person.postal_code,
-                "city": person.kommune,  # kommune code as city proxy
+                # city: resolve kommune NAME from KLASS snapshot (P2)
+                # kommune CODE is kept in identifiers, not leaked into city
+                "city": kommune_name(person.kommune) or person.kommune,
                 "country": "NO",
             }
         ],
@@ -326,6 +329,9 @@ def build_observation(
     obs_value = value if value is not None else loinc_entry.default_value
     obs_unit = unit if unit is not None else loinc_entry.unit
 
+    # Use UCUM code for valueQuantity.code (machine-readable); unit is for display
+    ucum_code = loinc_entry.ucum if unit is None else obs_unit
+
     obs_dict = {
         "resourceType": "Observation",
         "id": str(resource_id),
@@ -342,9 +348,9 @@ def build_observation(
         },
         "valueQuantity": {
             "value": obs_value,
-            "unit": obs_unit,
+            "unit": obs_unit,   # human-readable display unit
             "system": _URI_UCUM,
-            "code": obs_unit,
+            "code": ucum_code,  # UCUM machine code (from loinc_entry.ucum)
         },
     }
     return Observation.model_validate(obs_dict), resource_id

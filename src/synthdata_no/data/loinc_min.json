@@ -9,6 +9,7 @@
       "system": "Ser/Plas",
       "scale": "Qn",
       "unit": "umol/L",
+      "ucum": "umol/L",
       "default_value": 85.0,
       "reference_range": "60–110"
     },
@@ -18,6 +19,7 @@
       "system": "Bld",
       "scale": "Qn",
       "unit": "g/dL",
+      "ucum": "g/dL",
       "default_value": 13.5,
       "reference_range": "12.0–17.5"
     },
@@ -27,6 +29,7 @@
       "system": "Ser/Plas",
       "scale": "Qn",
       "unit": "mmol/L",
+      "ucum": "mmol/L",
       "default_value": 5.4,
       "reference_range": "3.9–7.8"
     },
@@ -36,6 +39,7 @@
       "system": "Ser/Plas",
       "scale": "Qn",
       "unit": "mL/min/1.73m2",
+      "ucum": "mL/min/{1.73_m2}",
       "default_value": 72.0,
       "reference_range": ">60"
     },
@@ -45,6 +49,7 @@
       "system": "Ser/Plas",
       "scale": "Qn",
       "unit": "mmol/L",
+      "ucum": "mmol/L",
       "default_value": 4.8,
       "reference_range": "<5.0"
     },
@@ -54,6 +59,7 @@
       "system": "PPP",
       "scale": "Qn",
       "unit": "INR",
+      "ucum": "{INR}",
       "default_value": 1.1,
       "reference_range": "0.8–1.2"
     }

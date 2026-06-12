@@ -36,6 +36,22 @@ def valid_kommune_codes() -> list[str]:
     return [entry["code"] for entry in snap["kommuner"]]
 
 
+def kommune_name(code: str) -> Optional[str]:
+    """Return the Norwegian name for a 4-digit kommune code.
+
+    Args:
+        code: 4-digit kommune code (e.g. '0301').
+
+    Returns:
+        The kommune name (e.g. 'Oslo'), or None if the code is not in the snapshot.
+    """
+    snap = _load_snapshot()
+    for entry in snap["kommuner"]:
+        if entry["code"] == code:
+            return entry["name"]
+    return None
+
+
 def random_kommune(
     rng: np.random.Generator,
     weights: Optional[dict[str, float]] = None,
