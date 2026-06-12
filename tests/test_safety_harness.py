@@ -265,3 +265,45 @@ class TestWriteFixtureSet:
             idx1 = (Path(dir1) / "index.json").read_text()
             idx2 = (Path(dir2) / "index.json").read_text()
             assert idx1 == idx2
+
+    # N1 — per-patient seeded variety tests
+    def test_distinct_med_sets_across_patients(self):
+        """N1: across 10 patients, at least 3 distinct medication sets."""
+        with tempfile.TemporaryDirectory() as tmpdir:
+            write_fixture_set(Path(tmpdir), n_patients=10, seed=42)
+            med_sets = []
+            for i in range(10):
+                path = Path(tmpdir) / f"patient_{i:04d}.json"
+                bd = json.loads(path.read_text())
+                meds = _get_resources_by_type(bd, "Medication")
+                med_codes = frozenset(
+                    c["code"]
+                    for med in meds
+                    for c in med["code"]["coding"]
+                    if c["system"] == _URI_ATC
+                )
+                med_sets.append(med_codes)
+            distinct = len(set(med_sets))
+            assert distinct >= 3, (
+                f"Expected ≥3 distinct medication sets across 10 patients, got {distinct}. "
+                "Clinical content should vary per patient (N1 fix)."
+            )
+
+    def test_distinct_creatinine_values_across_patients(self):
+        """N1: across 10 patients, at least 3 distinct creatinine values."""
+        with tempfile.TemporaryDirectory() as tmpdir:
+            write_fixture_set(Path(tmpdir), n_patients=10, seed=42)
+            creatinine_values = []
+            for i in range(10):
+                path = Path(tmpdir) / f"patient_{i:04d}.json"
+                bd = json.loads(path.read_text())
+                obs_list = _get_resources_by_type(bd, "Observation")
+                for obs in obs_list:
+                    code_codings = obs.get("code", {}).get("coding", [])
+                    if any(c.get("code") == "2160-0" for c in code_codings):
+                        creatinine_values.append(obs["valueQuantity"]["value"])
+            distinct = len(set(creatinine_values))
+            assert distinct >= 3, (
+                f"Expected ≥3 distinct creatinine values across 10 patients, got {distinct}. "
+                "Creatinine should be jittered per patient (N1 fix)."
+            )

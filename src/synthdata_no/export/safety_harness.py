@@ -139,16 +139,26 @@ def write_fixture_set(
     icd10_entries = load_icd10_codes()
     loinc_entries = load_loinc_min()
 
-    # Pick a fixed small subset for clinical completeness without bloat
-    _meds = atc_entries[:2]
-    _conditions = icd10_entries[:2]
-    # Observations: creatinine with default value
+    # Creatinine entry for observations
     creatinine = next((e for e in loinc_entries if e.loinc == "2160-0"), loinc_entries[0])
-    _observations = [(creatinine, creatinine.default_value, creatinine.unit)]
 
     last_counts: dict[str, int] = {}
 
     for i, person in enumerate(persons):
+        # Per-patient seeded variety: 1–3 meds, 1–3 conditions, jittered creatinine
+        # Each patient gets a distinct sub-rng derived from the main rng so clinical
+        # content varies while remaining byte-deterministic across runs.
+        n_meds = int(rng.integers(1, 4))           # 1, 2, or 3
+        n_conditions = int(rng.integers(1, 4))     # 1, 2, or 3
+        med_indices = rng.choice(len(atc_entries), size=n_meds, replace=False)
+        cond_indices = rng.choice(len(icd10_entries), size=n_conditions, replace=False)
+        _meds = [atc_entries[j] for j in sorted(med_indices)]
+        _conditions = [icd10_entries[j] for j in sorted(cond_indices)]
+        creatinine_value = round(
+            float(np.clip(rng.normal(85, 18), 50, 110)), 1
+        )
+        _observations = [(creatinine, creatinine_value, creatinine.unit)]
+
         bundle = patient_bundle(
             person,
             meds=_meds,
