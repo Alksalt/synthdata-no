@@ -5,15 +5,18 @@ Every generated identifier sits in the Tenor synthetic range:
   - D-numbers additionally: day + 40
   - mod-11 control digits computed AFTER offsets
 
-Checksum logic vendored from:
-  /Users/ol/agents/ehelse_project/omsorgsradar/src/omsorgsradar/core/anonymize/pii.py
-  (project: omsorgsradar — MIT-compatible; vendored with attribution per DECISIONS.md)
+Checksum logic vendored from the omsorgsradar project (core/anonymize/pii.py).
+(project: omsorgsradar — MIT-compatible; vendored with attribution per DECISIONS.md)
 
 Individnummer century ranges (unchanged in synthetic range — offsets only touch MM/DD):
   000–499 → 1900–1999
-  500–749 → 1855–1899 and 2000–2039  (YY disambiguates)
+  500–749 → 1854–1899 (yy 54–99) and 2000–2039 (yy 00–53)  (YY disambiguates)
   750–899 → 2000–2039
   900–999 → 1940–1999
+
+Source: Skatteetaten official fnr specification + Wikipedia «National identification number (Norway)».
+Lower bound 1854 confirmed: yy=54 with individ 500–749 → 1854.
+900–999 covers 1940–1999 ONLY (not 2000+); 2000–2039 births use 500–749 and 750–899.
 
 Sex parity: 3rd individnummer digit even=F, odd=M.
 ~17% of stems yield k1 or k2 == 10 → discard-and-regenerate loop.
@@ -73,17 +76,25 @@ def append_fnr_control_digits(stem9: str) -> str:
 
 
 def _century_individ_ranges(year: int) -> list[tuple[int, int]]:
-    """Return valid individnummer ranges for the given 4-digit birth year."""
-    yy = year % 100
+    """Return valid individnummer ranges for the given 4-digit birth year.
+
+    Ranges per Skatteetaten official spec:
+      000–499 → 1900–1999
+      900–999 → 1940–1999
+      500–749 → 1854–1899 (yy 54–99) and 2000–2039 (yy 00–53)
+      750–899 → 2000–2039
+
+    Lower bound 1854: yy=54 with individ 500–749 unambiguously means 1854.
+    """
     ranges: list[tuple[int, int]] = []
     # 000–499 → 1900–1999
     if 1900 <= year <= 1999:
         ranges.append((0, 499))
-    # 900–999 → 1940–1999
+    # 900–999 → 1940–1999 (Skatteetaten spec: only for 1940–1999, NOT 2000+)
     if 1940 <= year <= 1999:
         ranges.append((900, 999))
-    # 500–749 → 1855–1899 and 2000–2039 (disambiguated by YY: for 2000–2039 yy=00–39)
-    if 1855 <= year <= 1899:
+    # 500–749 → 1854–1899 (lower bound 1854, not 1855)
+    if 1854 <= year <= 1899:
         ranges.append((500, 749))
     if 2000 <= year <= 2039:
         ranges.append((500, 749))
@@ -253,8 +264,9 @@ def fnr_birth_date(value: str) -> datetime.date:
         raise ValueError(f"Day {day_enc} out of expected range")
 
     # Disambiguate century from individnummer
+    # Source: Skatteetaten official fnr spec
     # 000–499 → 1900–1999
-    # 500–749 → 1855–1899 (yy >= 55) or 2000–2039 (yy <= 39)
+    # 500–749 → 2000–2039 (yy 00–53) or 1854–1899 (yy 54–99); yy 40–53 is ambiguous/unauthorized
     # 750–899 → 2000–2039
     # 900–999 → 1940–1999
     if 0 <= individ <= 499:
@@ -262,11 +274,21 @@ def fnr_birth_date(value: str) -> datetime.date:
     elif 500 <= individ <= 749:
         if yy <= 39:
             year = 2000 + yy
-        else:
+        elif yy >= 54:
             year = 1800 + yy
+        else:
+            # yy 40–53 with individ 500–749: would map to 1840–1853 (never generated)
+            # or could be 2040–2053 (outside authorized range). This is ambiguous
+            # and no valid Tenor synthetic fnr should exist here.
+            raise ValueError(
+                f"Cannot disambiguate century for individ={individ}, yy={yy:02d}: "
+                f"individ range 500–749 with yy 40–53 is ambiguous "
+                f"(1840–1853 is pre-spec; 2040–2053 is outside the 2000–2039 range). "
+                "This is not a valid Tenor synthetic fnr."
+            )
     elif 750 <= individ <= 899:
         year = 2000 + yy
-    else:  # 900–999
+    else:  # 900–999 → 1940–1999
         year = 1900 + yy
 
     return datetime.date(year, month, day)
