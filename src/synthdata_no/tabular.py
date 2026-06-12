@@ -44,11 +44,19 @@ _BAND_LABELS = ["18-44", "45-64", "65-95"]
 
 
 def _age_band_label(age: int) -> str:
-    """Map a scalar age to its band label."""
+    """Map a scalar age to its band label.
+
+    Raises:
+        ValueError: If age is outside all defined bands (N7).
+    """
     for (lo, hi), label in zip(_AGE_BANDS, _BAND_LABELS):
         if lo <= age <= hi:
             return label
-    return _BAND_LABELS[-1]  # clamp to last band
+    valid = ", ".join(f"{lo}–{hi}" for lo, hi in _AGE_BANDS)
+    raise ValueError(
+        f"Age {age} is outside all defined age bands ({valid}). "
+        "Check your input — ages must be within the snapshot range."
+    )
 
 
 # ---------------------------------------------------------------------------
@@ -183,10 +191,23 @@ def _apply_cpt(
     categories: list[Any],
     rng: np.random.Generator,
 ) -> Any:
-    """Draw one value from the CPT for the given age and sex."""
+    """Draw one value from the CPT for the given age and sex.
+
+    Raises:
+        ValueError: If the resolved age band is missing the sex key (N4).
+            This prevents silent fallback to wrong sex probabilities.
+    """
     band = _age_band_label(age)
     sex_str = str(sex)
-    prob_vector = cpt.get(band, cpt[_BAND_LABELS[-1]]).get(sex_str, list(cpt.values())[0].get(sex_str))
+    band_probs = cpt.get(band, cpt[_BAND_LABELS[-1]])
+    if sex_str not in band_probs:
+        valid_keys = sorted(band_probs.keys())
+        raise ValueError(
+            f"CPT band {band!r} is missing sex key {sex_str!r}. "
+            f"Valid sex keys in this band: {valid_keys}. "
+            "Check your CPT definition — sex keys must be '1' (M) and '2' (F)."
+        )
+    prob_vector = band_probs[sex_str]
     # Normalise to handle minor float drift
     probs = np.array(prob_vector, dtype=float)
     probs = probs / probs.sum()
@@ -285,6 +306,17 @@ def generate_table(
     kommune_subset: list[str] | None = config.get("kommune_subset")
     column_specs: dict[str, Any] = config.get("columns", _DEFAULT_COLUMN_SPECS)
     planted_fnr_count: int = int(config.get("planted_fnr_count", 0))
+
+    # N5: guard planted_fnr_count bounds
+    if planted_fnr_count < 0:
+        raise ValueError(
+            f"planted_fnr_count must be ≥ 0, got {planted_fnr_count}"
+        )
+    if planted_fnr_count > n:
+        raise ValueError(
+            f"planted_fnr_count ({planted_fnr_count}) must be ≤ n ({n}). "
+            "Cannot plant more fnr than there are rows."
+        )
 
     commune_list, commune_weights, age_sex_weights, ages = _build_weight_arrays(
         snapshot, kommune_subset

@@ -348,3 +348,160 @@ class TestOmsorgsradarExport:
             assert df.loc[i, "notes"] == "rutinekontroll", (
                 f"Row {i} notes is not «rutinekontroll»: {df.loc[i, 'notes']!r}"
             )
+
+    # N12 — top_n_kommuner tests
+    def test_top_n_kommuner_limits_distinct_count(self, tmp_path):
+        """N12: top_n_kommuner=10 → at most 10 distinct state values."""
+        from synthdata_no.export.omsorgsradar import write_brfss_shaped_fixture
+        out = tmp_path / "fixture.csv"
+        df = write_brfss_shaped_fixture(out, seed=42, top_n_kommuner=10)
+        distinct = df["state"].nunique()
+        assert distinct <= 10, (
+            f"top_n_kommuner=10 produced {distinct} distinct kommuner — expected ≤10"
+        )
+
+    def test_top_n_kommuner_weights_are_population_ordered(self, tmp_path):
+        """N12: top kommuner should be the most-populous ones (larger row share)."""
+        from synthdata_no.export.omsorgsradar import write_brfss_shaped_fixture, _top_n_kommune_codes
+        out = tmp_path / "fixture.csv"
+        df = write_brfss_shaped_fixture(out, seed=42, top_n_kommuner=5)
+        top5 = _top_n_kommune_codes(5)
+        # All states must be in the top-5 set
+        assert set(df["state"]).issubset(set(top5)), (
+            f"Unexpected kommuner outside top-5: {set(df['state']) - set(top5)}"
+        )
+
+    def test_planted_pii_unchanged_with_top_n(self, tmp_path):
+        """N12: planted fnr still present and correct when top_n_kommuner is used."""
+        from synthdata_no.export.omsorgsradar import write_brfss_shaped_fixture
+
+        def has_fnr(text: str) -> bool:
+            return any(
+                len(t) == 11 and t.isdigit() and is_synthetic_fnr(t)
+                for t in text.split()
+            )
+
+        out = tmp_path / "fixture.csv"
+        df = write_brfss_shaped_fixture(out, seed=42, top_n_kommuner=12)
+        assert has_fnr(df.loc[0, "notes"]), "Row 0 must carry a planted fnr with top_n_kommuner"
+        assert has_fnr(df.loc[1, "notes"]), "Row 1 must carry a planted fnr with top_n_kommuner"
+        assert "91123456" in df.loc[1, "notes"], "Phone-like number must be in row 1"
+
+    def test_default_uses_top_n_kommuner(self, tmp_path):
+        """N12: default call (no top_n_kommuner arg) restricts to 12 kommuner."""
+        from synthdata_no.export.omsorgsradar import write_brfss_shaped_fixture
+        out = tmp_path / "fixture.csv"
+        df = write_brfss_shaped_fixture(out, seed=42)  # default top_n_kommuner=12
+        distinct = df["state"].nunique()
+        assert distinct <= 12, (
+            f"Default fixture produced {distinct} distinct kommuner — expected ≤12"
+        )
+
+
+# ---------------------------------------------------------------------------
+# N4 — CPT missing sex key raises ValueError
+# ---------------------------------------------------------------------------
+
+class TestCPTMissingSexKey:
+    """N4: _apply_cpt raises ValueError when sex key is missing from a band."""
+
+    def test_missing_sex_key_raises(self):
+        """Custom CPT without '2' sex key must raise ValueError for sex=2."""
+        from synthdata_no.tabular import _apply_cpt
+        import numpy as np
+        # CPT only has sex key "1" — sex=2 must raise
+        cpt_missing_sex2 = {
+            "18-44": {"1": [0.5, 0.5]},
+            "45-64": {"1": [0.4, 0.6]},
+            "65-95": {"1": [0.3, 0.7]},
+        }
+        rng = np.random.default_rng(1)
+        with pytest.raises(ValueError, match="missing sex key"):
+            _apply_cpt(30, 2, cpt_missing_sex2, [0, 1], rng)
+
+    def test_missing_sex_key_1_raises(self):
+        """Custom CPT without '1' sex key must raise ValueError for sex=1."""
+        from synthdata_no.tabular import _apply_cpt
+        import numpy as np
+        cpt_missing_sex1 = {
+            "18-44": {"2": [0.5, 0.5]},
+            "45-64": {"2": [0.4, 0.6]},
+            "65-95": {"2": [0.3, 0.7]},
+        }
+        rng = np.random.default_rng(1)
+        with pytest.raises(ValueError, match="missing sex key"):
+            _apply_cpt(30, 1, cpt_missing_sex1, [0, 1], rng)
+
+    def test_valid_cpt_does_not_raise(self):
+        """Complete CPT with both sex keys must not raise."""
+        from synthdata_no.tabular import _apply_cpt
+        import numpy as np
+        cpt_valid = {
+            "18-44": {"1": [0.5, 0.5], "2": [0.5, 0.5]},
+            "45-64": {"1": [0.4, 0.6], "2": [0.4, 0.6]},
+            "65-95": {"1": [0.3, 0.7], "2": [0.3, 0.7]},
+        }
+        rng = np.random.default_rng(1)
+        result = _apply_cpt(30, 1, cpt_valid, [0, 1], rng)
+        assert result in [0, 1]
+
+
+# ---------------------------------------------------------------------------
+# N5 — planted_fnr_count bounds guard
+# ---------------------------------------------------------------------------
+
+class TestPlantedFnrCountGuard:
+    """N5: generate_table raises ValueError for out-of-bounds planted_fnr_count."""
+
+    def test_planted_fnr_count_negative_raises(self):
+        with pytest.raises(ValueError, match="planted_fnr_count"):
+            generate_table({"planted_fnr_count": -1}, n=10, seed=1)
+
+    def test_planted_fnr_count_exceeds_n_raises(self):
+        with pytest.raises(ValueError, match="planted_fnr_count"):
+            generate_table({"planted_fnr_count": 11}, n=10, seed=1)
+
+    def test_planted_fnr_count_equals_n_ok(self):
+        """planted_fnr_count == n is the boundary — must succeed."""
+        df = generate_table({"planted_fnr_count": 5}, n=5, seed=1)
+        assert len(df) == 5
+
+    def test_planted_fnr_count_zero_ok(self):
+        """planted_fnr_count=0 is always valid."""
+        df = generate_table({"planted_fnr_count": 0}, n=10, seed=1)
+        assert "notes" not in df.columns
+
+
+# ---------------------------------------------------------------------------
+# N7 — _age_band_label out-of-range raises ValueError
+# ---------------------------------------------------------------------------
+
+class TestAgeBandLabelOutOfRange:
+    """N7: _age_band_label raises ValueError for ages outside all defined bands."""
+
+    def test_age_below_min_raises(self):
+        from synthdata_no.tabular import _age_band_label
+        with pytest.raises(ValueError, match="outside all defined age bands"):
+            _age_band_label(5)
+
+    def test_age_above_max_raises(self):
+        from synthdata_no.tabular import _age_band_label
+        with pytest.raises(ValueError, match="outside all defined age bands"):
+            _age_band_label(120)
+
+    def test_age_17_raises(self):
+        from synthdata_no.tabular import _age_band_label
+        with pytest.raises(ValueError):
+            _age_band_label(17)
+
+    def test_age_96_raises(self):
+        from synthdata_no.tabular import _age_band_label
+        with pytest.raises(ValueError):
+            _age_band_label(96)
+
+    def test_boundary_ages_do_not_raise(self):
+        """Ages at band boundaries (18, 44, 45, 64, 65, 95) must not raise."""
+        from synthdata_no.tabular import _age_band_label
+        for age in [18, 44, 45, 64, 65, 95]:
+            label = _age_band_label(age)
+            assert isinstance(label, str)
