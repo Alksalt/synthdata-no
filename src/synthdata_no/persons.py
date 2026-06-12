@@ -100,7 +100,13 @@ def generate_person(
     else:
         fnr = synthetic_fnr(birth_date, sex, rng=rng)
 
-    name = fake.name()
+    # Sex-matched name: avoids cross-sex mismatch and Prof./Dr. title prefixes.
+    # name_male()/name_female() may include prefixes (Prof./Dr.) in Faker no_NO;
+    # combining first_name_male()/first_name_female() + last_name() avoids this.
+    if sex == "M":
+        name = fake.first_name_male() + " " + fake.last_name()
+    else:
+        name = fake.first_name_female() + " " + fake.last_name()
     address = fake.street_address()
     postal_code = fake.postcode()
     kom = kommune if kommune is not None else random_kommune(rng)
