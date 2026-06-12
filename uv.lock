@@ -1143,13 +1143,13 @@ dependencies = [
     { name = "numpy" },
     { name = "pandas" },
     { name = "pyarrow" },
-    { name = "requests" },
 ]
 
 [package.dev-dependencies]
 dev = [
     { name = "pytest" },
     { name = "pytest-cov" },
+    { name = "requests" },
     { name = "spacy" },
 ]
 
@@ -1163,13 +1163,13 @@ requires-dist = [
     { name = "numpy", specifier = ">=1.26" },
     { name = "pandas", specifier = ">=3.0.3" },
     { name = "pyarrow", specifier = ">=24.0.0" },
-    { name = "requests", specifier = ">=2.32" },
 ]
 
 [package.metadata.requires-dev]
 dev = [
     { name = "pytest", specifier = ">=8.2" },
     { name = "pytest-cov", specifier = ">=5.0" },
+    { name = "requests", specifier = ">=2.32" },
     { name = "spacy", specifier = ">=3.8.14" },
 ]
 

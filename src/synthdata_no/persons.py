@@ -13,7 +13,6 @@ One seed → byte-identical output. No unseeded randomness on any path.
 from __future__ import annotations
 
 import datetime
-import random
 from dataclasses import dataclass
 from typing import Literal, Optional
 
@@ -92,8 +91,6 @@ def generate_person(
     fake = Faker(_FAKER_LOCALE)
     fake.seed_instance(faker_seed)
 
-    # Also seed stdlib random for any Faker internals that use it
-    random.seed(faker_seed)
 
     birth_date = _random_birth_date(rng)
     sex: Literal["M", "F"] = "M" if rng.integers(0, 2) == 1 else "F"

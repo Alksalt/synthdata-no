@@ -15,7 +15,6 @@ classifiers = [
 dependencies = [
     "numpy>=1.26",
     "faker>=25.0",
-    "requests>=2.32",
     "defusedxml>=0.7.1",
     "fhir-resources>=8",
     "fhir-validator>=0.2.2",
@@ -26,6 +25,7 @@ dependencies = [
 
 [dependency-groups]
 dev = [
+    "requests>=2.32",  # scripts/ regen only — not a runtime dep
     "pytest>=8.2",
     "pytest-cov>=5.0",
     "spacy>=3.8.14",

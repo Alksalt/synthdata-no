@@ -123,7 +123,7 @@ def _load_snapshot() -> pd.DataFrame:
 def _build_weight_arrays(
     snapshot: pd.DataFrame,
     kommune_subset: list[str] | None,
-) -> tuple[list[str], np.ndarray, dict[str, dict[int, dict[int, np.ndarray]]]]:
+) -> tuple[list[str], np.ndarray, dict[str, dict[int, np.ndarray]], list[int]]:
     """Pre-compute sampling structures from the snapshot.
 
     Returns:
