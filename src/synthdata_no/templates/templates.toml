@@ -256,7 +256,7 @@ section = "diagnoser"
 [[templates]]
 id = "post_neg_usannsynlig_01"
 pattern = "{entity} er usannsynlig i dette tilfellet."
-gold_context = "NEGATED_EXISTENCE"
+gold_context = "POSSIBLE_EXISTENCE"
 trigger = "usannsynlig"
 section = "vurdering"
 
@@ -984,7 +984,7 @@ section = "vurdering"
 [[templates]]
 id = "abbrev_temp_02"
 pattern = "Temp. normal, {entity} usannsynlig."
-gold_context = "NEGATED_EXISTENCE"
+gold_context = "POSSIBLE_EXISTENCE"
 trigger = "usannsynlig"
 section = "vurdering"
 
@@ -1038,7 +1038,7 @@ section = "sammenfatning"
 [[templates]]
 id = "affirmed_06"
 pattern = "Klinisk funn forenlig med {entity}."
-gold_context = "AFFIRMED"
+gold_context = "POSSIBLE_EXISTENCE"
 trigger = "forenlig med"
 section = "vurdering"
 
