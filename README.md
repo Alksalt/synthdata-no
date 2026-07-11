@@ -7,7 +7,7 @@
 Combines Tenor-range synthetic fødselsnummer, gold-annotated bokmål clinical text, no-basis-aware FHIR R4B bundles, and tabular microdata with Norwegian kommune marginals — all in one pip-installable package.
 
 Produced as a shared synthetic substrate for the open Norwegian health-AI portfolio:
-[medspacy-no](https://github.com/Alksalt/medspacy-no) · [fhir-safety-harness](https://github.com/Alksalt/fhir-safety-harness) · [omsorgsradar](https://github.com/Alksalt/omsorgsradar)
+[medspacy-no](https://github.com/Alksalt/medspacy-no) · fhir-safety-harness (privat, under utvikling) · [omsorgsradar](https://github.com/Alksalt/omsorgsradar)
 
 No real persons. No re-identification risk by construction. NOT for statistical inference about the Norwegian population.
 
@@ -262,6 +262,6 @@ Oleksandr Altukhov — utdannet lege (master i medisin), agentic-AI engineer.
 3. **Klinisk tekst på bokmål** med gullmerkede entitetsspenn for ConText-evaluering — dekker negasjon, usikkerhet, historikk, familieanamnese og hypotetisk kontekst.
 4. **FHIR R4B-bunter** med no-basis-Patient-profil, FEST+ATC-legemiddelkoding, ICD-10-NO-diagnoser (kun koder) og LOINC-observasjoner.
 
-Biblioteket brukes som felles syntetisk grunnlag for [medspacy-no](https://github.com/Alksalt/medspacy-no), [fhir-safety-harness](https://github.com/Alksalt/fhir-safety-harness) og [omsorgsradar](https://github.com/Alksalt/omsorgsradar).
+Biblioteket brukes som felles syntetisk grunnlag for [medspacy-no](https://github.com/Alksalt/medspacy-no), fhir-safety-harness (privat, under utvikling) og [omsorgsradar](https://github.com/Alksalt/omsorgsradar).
 
 **Ingen reelle personer. Ingen gjenkjenningsrisiko. Ikke egnet for statistisk inferens om den norske befolkningen.**
